@@ -1,0 +1,3 @@
+redo-ifchange *.elm
+
+setem .
