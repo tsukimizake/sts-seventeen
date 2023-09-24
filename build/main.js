@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695522071391"
+    "1695522490940"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11519,26 +11519,44 @@ var $author$project$Main$currentCardList = function (m) {
 									[
 										$author$project$Card$Ironclad$view(card),
 										A2(
-										$rtfeldman$elm_css$Html$Styled$button,
+										$rtfeldman$elm_css$Html$Styled$div,
 										_List_fromArray(
 											[
-												$rtfeldman$elm_css$Html$Styled$Events$onClick(
-												$author$project$Main$RemoveCard(idx))
+												$rtfeldman$elm_css$Html$Styled$Attributes$css(
+												_List_fromArray(
+													[
+														$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
+														$author$project$Utils$gridTemplateColumns(
+														_List_fromArray(
+															['auto', 'auto'])),
+														$author$project$Utils$gridColumnGap(
+														$rtfeldman$elm_css$Css$px(5))
+													]))
 											]),
 										_List_fromArray(
 											[
-												$rtfeldman$elm_css$Html$Styled$text('除去')
-											])),
-										A2(
-										$rtfeldman$elm_css$Html$Styled$button,
-										_List_fromArray(
-											[
-												$rtfeldman$elm_css$Html$Styled$Events$onClick(
-												A2($author$project$Main$UpgradeCard, idx, card))
-											]),
-										_List_fromArray(
-											[
-												$rtfeldman$elm_css$Html$Styled$text('UG')
+												A2(
+												$rtfeldman$elm_css$Html$Styled$button,
+												_List_fromArray(
+													[
+														$rtfeldman$elm_css$Html$Styled$Events$onClick(
+														$author$project$Main$RemoveCard(idx))
+													]),
+												_List_fromArray(
+													[
+														$rtfeldman$elm_css$Html$Styled$text('除去')
+													])),
+												A2(
+												$rtfeldman$elm_css$Html$Styled$button,
+												_List_fromArray(
+													[
+														$rtfeldman$elm_css$Html$Styled$Events$onClick(
+														A2($author$project$Main$UpgradeCard, idx, card))
+													]),
+												_List_fromArray(
+													[
+														$rtfeldman$elm_css$Html$Styled$text('UG')
+													]))
 											]))
 									]));
 						}),

@@ -97,8 +97,16 @@ currentCardList m =
                     (\idx card ->
                         div []
                             [ Card.view card
-                            , button [ onClick <| RemoveCard idx ] [ text "除去" ]
-                            , button [ onClick <| UpgradeCard idx card ] [ text "UG" ]
+                            , div
+                                [ css
+                                    [ display grid
+                                    , gridTemplateColumns [ "auto", "auto" ]
+                                    , gridColumnGap (px 5)
+                                    ]
+                                ]
+                                [ button [ onClick <| RemoveCard idx ] [ text "除去" ]
+                                , button [ onClick <| UpgradeCard idx card ] [ text "UG" ]
+                                ]
                             ]
                     )
             )
