@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695534281594"
+    "1695534355219"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11409,24 +11409,27 @@ var $author$project$Main$calcResut = function (m) {
 				return $.mana;
 			},
 			currentCards));
-	var vulTurn = $elm$core$List$sum(
-		A2(
-			$elm$core$List$map,
-			function ($) {
-				return $.vulnerable;
-			},
-			currentCards));
 	var cardCount = $elm$core$List$length(currentCards);
 	var loopTurn = (cardCount - drawSum) / 5;
 	var perLoop = function (n) {
 		return n / loopTurn;
 	};
 	var dmgPerLoop = perLoop(damage);
-	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var perLoopMana = function (valPerLoop) {
 		return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((manaPerTurn * loopTurn) / manaConsumeSum));
 	};
 	var dmgPerLoopMana = perLoopMana(dmgPerLoop);
+	var vulTurn = A2(
+		$elm$core$Basics$max,
+		loopTurn,
+		$elm$core$List$sum(
+			A2(
+				$elm$core$List$map,
+				function ($) {
+					return $.vulnerable;
+				},
+				currentCards)));
+	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
 	var block = $elm$core$List$sum(
 		A2(

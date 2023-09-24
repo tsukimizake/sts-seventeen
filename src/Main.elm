@@ -193,10 +193,10 @@ calcResut m =
             perLoop damage
 
         vulTurn =
-            currentCards |> List.map .vulnerable |> List.sum
+            currentCards |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
 
         dmgPerLoopVul =
-            dmgPerLoop + (toFloat vulTurn / loopTurn) * dmgPerLoop * 0.5
+            dmgPerLoop + (vulTurn / loopTurn) * dmgPerLoop * 0.5
 
         dmgPerLoopVulMana =
             perLoopMana dmgPerLoopVul
