@@ -8,6 +8,11 @@ noCmd m =
     ( m, Cmd.none )
 
 
+putIn : (a -> b -> c) -> b -> a -> c
+putIn setter m field =
+    setter field m
+
+
 
 -----------------
 -- Grid Layout

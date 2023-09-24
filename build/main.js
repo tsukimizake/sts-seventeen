@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695525414842"
+    "1695526500628"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8406,8 +8406,7 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$document = _Browser_document;
 var $author$project$History$init = function (a) {
-	return _List_fromArray(
-		[a]);
+	return _Utils_Tuple2(a, _List_Nil);
 };
 var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
 var $author$project$Card$Ironclad$bash = _Utils_update(
@@ -8447,7 +8446,8 @@ var $author$project$Main$initialCards = _Utils_ap(
 		_List_fromArray(
 			[$author$project$Card$Ironclad$bash])));
 var $author$project$Main$initialModel = {
-	cards: $author$project$History$init($author$project$Main$initialCards)
+	history: $author$project$History$init(
+		{cards: $author$project$Main$initialCards, mana: 3})
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -9380,6 +9380,61 @@ var $rtfeldman$elm_css$VirtualDom$Styled$toUnstyled = function (vdom) {
 	}
 };
 var $rtfeldman$elm_css$Html$Styled$toUnstyled = $rtfeldman$elm_css$VirtualDom$Styled$toUnstyled;
+var $author$project$History$pop = function (_v0) {
+	var hd = _v0.a;
+	var his = _v0.b;
+	if (!his.b) {
+		return _Utils_Tuple2(hd, _List_Nil);
+	} else {
+		var h = his.a;
+		var t = his.b;
+		return _Utils_Tuple2(h, t);
+	}
+};
+var $author$project$History$newest = function (_v0) {
+	var hd = _v0.a;
+	return hd;
+};
+var $author$project$History$push = F2(
+	function (a, _v0) {
+		var hd = _v0.a;
+		var his = _v0.b;
+		return _Utils_Tuple2(
+			a,
+			A2($elm$core$List$cons, hd, his));
+	});
+var $author$project$Utils$putIn = F3(
+	function (setter, m, field) {
+		return A2(setter, field, m);
+	});
+var $author$project$RecordSetter$s_cards = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{cards: value__});
+	});
+var $author$project$RecordSetter$s_history = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{history: value__});
+	});
+var $author$project$Main$pushCardsHistory = F2(
+	function (f, m) {
+		var newCards = f(
+			$author$project$History$newest(m.history).cards);
+		return A3(
+			$author$project$Utils$putIn,
+			$author$project$RecordSetter$s_history,
+			m,
+			A2(
+				$author$project$History$push,
+				A2(
+					$author$project$RecordSetter$s_cards,
+					newCards,
+					$author$project$History$newest(m.history)),
+				m.history));
+	});
 var $elm$core$List$drop = F2(
 	function (n, list) {
 		drop:
@@ -9400,53 +9455,6 @@ var $elm$core$List$drop = F2(
 				}
 			}
 		}
-	});
-var $author$project$History$pop = function (his) {
-	return A2($elm$core$List$drop, 1, his);
-};
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$History$newest = F2(
-	function (_default, his) {
-		return A2(
-			$elm$core$Maybe$withDefault,
-			_default,
-			$elm$core$List$head(his));
-	});
-var $author$project$History$push = F2(
-	function (a, his) {
-		return A2($elm$core$List$cons, a, his);
-	});
-var $author$project$RecordSetter$s_cards = F2(
-	function (value__, record__) {
-		return _Utils_update(
-			record__,
-			{cards: value__});
-	});
-var $author$project$Main$pushCardsHistory = F2(
-	function (f, m) {
-		var newCards = f(
-			A2($author$project$History$newest, $author$project$Main$initialCards, m.cards));
-		return A2(
-			$author$project$RecordSetter$s_cards,
-			A2($author$project$History$push, newCards, m.cards),
-			m);
 	});
 var $elm$core$List$takeReverse = F3(
 	function (n, list, kept) {
@@ -9702,6 +9710,15 @@ var $pzp1997$assoc_list$AssocList$get = F2(
 var $author$project$Card$Ironclad$strikeP = _Utils_update(
 	$author$project$Card$Ironclad$strike,
 	{attack: 9, name: 'ストライク+'});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
 var $author$project$Card$Ironclad$upgrade = function (card) {
 	var ugMap = $pzp1997$assoc_list$AssocList$fromList(
 		_List_fromArray(
@@ -9750,8 +9767,8 @@ var $author$project$Main$update = F2(
 			default:
 				return $author$project$Utils$noCmd(
 					A2(
-						$author$project$RecordSetter$s_cards,
-						$author$project$History$pop(model.cards),
+						$author$project$RecordSetter$s_history,
+						$author$project$History$pop(model.history),
 						model));
 		}
 	});
@@ -10583,6 +10600,15 @@ var $rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock = F2(
 			first,
 			A2($rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, update, rest));
 	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
 var $rtfeldman$elm_css$Css$Preprocess$Resolve$last = function (list) {
 	last:
 	while (true) {
@@ -11347,7 +11373,8 @@ var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
 var $author$project$Main$calcResut = function (m) {
-	var currentCards = A2($author$project$History$newest, $author$project$Main$initialCards, m.cards);
+	var manaPerTurn = $author$project$History$newest(m.history).mana;
+	var currentCards = $author$project$History$newest(m.history).cards;
 	var damage = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11377,7 +11404,7 @@ var $author$project$Main$calcResut = function (m) {
 	var dmgPerLoop = perLoop(damage);
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var perLoopMana = function (valPerLoop) {
-		return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((3 * loopTurn) / manaConsumeSum));
+		return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((manaPerTurn * loopTurn) / manaConsumeSum));
 	};
 	var dmgPerLoopMana = perLoopMana(dmgPerLoop);
 	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
@@ -11517,7 +11544,7 @@ var $author$project$Main$currentCardList = function (m) {
 											]))
 									]));
 						}),
-					A2($author$project$History$newest, $author$project$Main$initialCards, m.cards)))
+					$author$project$History$newest(m.history).cards))
 			]));
 };
 var $rtfeldman$elm_css$Css$Structure$Child = {$: 'Child'};
@@ -11572,8 +11599,11 @@ var $author$project$Main$notes = A2(
 		[
 			$rtfeldman$elm_css$Html$Styled$text('*1 現状強打自体にも1.5倍がかかっていて大きめに出ています')
 		]));
-var $author$project$Main$RevertCard = {$: 'RevertCard'};
-var $author$project$History$length = $elm$core$List$length;
+var $author$project$Main$RevertChange = {$: 'RevertChange'};
+var $author$project$History$length = function (_v0) {
+	var his = _v0.b;
+	return $elm$core$List$length(his) + 1;
+};
 var $author$project$Main$removeCardForm = function (m) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -11582,7 +11612,7 @@ var $author$project$Main$removeCardForm = function (m) {
 			[
 				$rtfeldman$elm_css$Html$Styled$text(
 				'ステップ数: ' + $elm$core$String$fromInt(
-					$author$project$History$length(m.cards))),
+					$author$project$History$length(m.history))),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$div,
 				_List_Nil,
@@ -11592,7 +11622,7 @@ var $author$project$Main$removeCardForm = function (m) {
 						$rtfeldman$elm_css$Html$Styled$button,
 						_List_fromArray(
 							[
-								$rtfeldman$elm_css$Html$Styled$Events$onClick($author$project$Main$RevertCard)
+								$rtfeldman$elm_css$Html$Styled$Events$onClick($author$project$Main$RevertChange)
 							]),
 						_List_fromArray(
 							[

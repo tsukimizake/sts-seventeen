@@ -2,30 +2,34 @@ module History exposing (..)
 
 
 type alias History a =
-    List a
+    ( a, List a )
 
 
 init : a -> History a
 init a =
-    [ a ]
+    ( a, [] )
 
 
 push : a -> History a -> History a
-push a his =
-    a :: his
+push a ( hd, his ) =
+    ( a, hd :: his )
 
 
 pop : History a -> History a
-pop his =
-    List.drop 1 his
+pop ( hd, his ) =
+    case his of
+        [] ->
+            ( hd, [] )
+
+        h :: t ->
+            ( h, t )
 
 
-newest : a -> History a -> a
-newest default his =
-    List.head his
-        |> Maybe.withDefault default
+newest : History a -> a
+newest ( hd, _ ) =
+    hd
 
 
 length : History a -> Int
-length =
-    List.length
+length ( _, his ) =
+    List.length his + 1

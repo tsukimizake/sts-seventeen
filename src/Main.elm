@@ -15,12 +15,18 @@ import Utils exposing (..)
 
 
 type alias Model =
-    { cards : History (List Card) }
+    { history : History State }
+
+
+type alias State =
+    { cards : List Card
+    , mana : Int
+    }
 
 
 initialModel : Model
 initialModel =
-    { cards = History.init <| initialCards }
+    { history = History.init <| { cards = initialCards, mana = 3 } }
 
 
 initialCards : List Card
@@ -32,7 +38,7 @@ type Msg
     = AddCard Card
     | RemoveCard Int
     | UpgradeCard Int Card
-    | RevertCard
+    | RevertChange
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -53,9 +59,9 @@ update msg model =
                 |> pushCardsHistory (\cards -> List.Extra.setAt idx (Card.upgrade card) cards)
                 |> noCmd
 
-        RevertCard ->
+        RevertChange ->
             model
-                |> s_cards (model.cards |> History.pop)
+                |> s_history (History.pop model.history)
                 |> noCmd
 
 
@@ -63,10 +69,11 @@ pushCardsHistory : (List Card -> List Card) -> Model -> Model
 pushCardsHistory f m =
     let
         newCards =
-            m.cards |> History.newest initialCards |> f
+            (History.newest m.history).cards |> f
     in
-    m
-        |> s_cards (History.push newCards m.cards)
+    m.history
+        |> History.push (s_cards newCards (History.newest m.history))
+        |> putIn s_history m
 
 
 view : Model -> List (Html Msg)
@@ -97,8 +104,9 @@ currentCardList m =
                 , gridColumnGap (px 10)
                 ]
             ]
-            (m.cards
-                |> History.newest initialCards
+            (m.history
+                |> History.newest
+                |> .cards
                 |> List.indexedMap
                     (\idx card ->
                         div []
@@ -136,8 +144,8 @@ addCardForm _ =
 removeCardForm : Model -> Html Msg
 removeCardForm m =
     div []
-        [ text <| "ステップ数: " ++ String.fromInt (History.length m.cards)
-        , div [] [ button [ onClick <| RevertCard ] [ text "戻す" ] ]
+        [ text <| "ステップ数: " ++ String.fromInt (History.length m.history)
+        , div [] [ button [ onClick <| RevertChange ] [ text "戻す" ] ]
         ]
 
 
@@ -150,7 +158,7 @@ calcResut : Model -> Html Msg
 calcResut m =
     let
         currentCards =
-            m.cards |> History.newest initialCards
+            m.history |> History.newest |> .cards
 
         damage =
             currentCards |> List.map .attack |> List.sum
@@ -168,9 +176,11 @@ calcResut m =
         perLoop n =
             toFloat n / loopTurn
 
+        manaPerTurn =
+            m.history |> History.newest |> .mana
+
         perLoopMana valPerLoop =
-            -- TODO manaperturn
-            min valPerLoop (valPerLoop * (3 * loopTurn / toFloat manaConsumeSum))
+            min valPerLoop (valPerLoop * ((toFloat manaPerTurn * loopTurn) / toFloat manaConsumeSum))
 
         dmgPerLoop =
             perLoop damage

@@ -29,6 +29,11 @@ s_guard value__ record__ =
     { record__ | guard = value__ }
 
 
+s_history : a -> { b | history : a } -> { b | history : a }
+s_history value__ record__ =
+    { record__ | history = value__ }
+
+
 s_init : a -> { b | init : a } -> { b | init : a }
 s_init value__ record__ =
     { record__ | init = value__ }
@@ -57,6 +62,11 @@ s_title value__ record__ =
 s_update : a -> { b | update : a } -> { b | update : a }
 s_update value__ record__ =
     { record__ | update = value__ }
+
+
+s_value : a -> { b | value : a } -> { b | value : a }
+s_value value__ record__ =
+    { record__ | value = value__ }
 
 
 s_view : a -> { b | view : a } -> { b | view : a }
