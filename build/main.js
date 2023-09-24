@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695526500628"
+    "1695526587984"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11382,6 +11382,13 @@ var $author$project$Main$calcResut = function (m) {
 				return $.attack;
 			},
 			currentCards));
+	var drawSum = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.draw;
+			},
+			currentCards));
 	var manaConsumeSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11397,7 +11404,7 @@ var $author$project$Main$calcResut = function (m) {
 			},
 			currentCards));
 	var cardCount = $elm$core$List$length(currentCards);
-	var loopTurn = cardCount / 5;
+	var loopTurn = (cardCount - drawSum) / 5;
 	var perLoop = function (n) {
 		return n / loopTurn;
 	};

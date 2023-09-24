@@ -169,9 +169,11 @@ calcResut m =
         cardCount =
             currentCards |> List.length
 
+        drawSum =
+            currentCards |> List.map .draw |> List.sum
+
         loopTurn =
-            -- TODO draw
-            toFloat cardCount / toFloat 5
+            toFloat (cardCount - drawSum) / toFloat 5
 
         perLoop n =
             toFloat n / loopTurn
