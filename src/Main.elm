@@ -114,12 +114,16 @@ currentCardList m =
                             , div
                                 [ css
                                     [ display grid
-                                    , gridTemplateColumns [ "auto", "auto" ]
+                                    , gridTemplateColumns [ "1fr", "1fr" ]
                                     , gridColumnGap (px 5)
                                     ]
                                 ]
                                 [ button [ onClick <| RemoveCard idx ] [ text "除去" ]
-                                , button [ onClick <| UpgradeCard idx card ] [ text "UG" ]
+                                , if card.name |> String.endsWith "+" then
+                                    noHtml
+
+                                  else
+                                    button [ onClick <| UpgradeCard idx card ] [ text "UG" ]
                                 ]
                             ]
                     )

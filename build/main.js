@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695532847035"
+    "1695534216645"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8408,32 +8408,54 @@ var $elm$browser$Browser$document = _Browser_document;
 var $author$project$History$init = function (a) {
 	return _Utils_Tuple2(a, _List_Nil);
 };
+var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
 var $author$project$Card$CardDef = F2(
 	function (normal, plus) {
 		return {normal: normal, plus: plus};
 	});
-var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
+var $author$project$RecordSetter$s_name = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{name: value__});
+	});
+var $author$project$Card$Ironclad$mkCardDef = F2(
+	function (card, f) {
+		var plus = A2(
+			$author$project$RecordSetter$s_name,
+			card.name + '+',
+			f(card));
+		return A2($author$project$Card$CardDef, card, plus);
+	});
+var $author$project$RecordSetter$s_attack = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{attack: value__});
+	});
 var $author$project$Card$Ironclad$bash = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
 		{attack: 8, mana: 2, name: '強打', vulnerable: 2});
 	return A2(
-		$author$project$Card$CardDef,
+		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		_Utils_update(
-			n,
-			{attack: 11}));
+		$author$project$RecordSetter$s_attack(11));
 }();
+var $author$project$RecordSetter$s_guard = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{guard: value__});
+	});
 var $author$project$Card$Ironclad$guard = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
 		{guard: 5, mana: 1, name: '防御'});
 	return A2(
-		$author$project$Card$CardDef,
+		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		_Utils_update(
-			n,
-			{guard: 8}));
+		$author$project$RecordSetter$s_guard(8));
 }();
 var $elm$core$List$repeatHelp = F3(
 	function (result, n, value) {
@@ -8461,11 +8483,9 @@ var $author$project$Card$Ironclad$strike = function () {
 		$author$project$Card$default,
 		{attack: 6, mana: 1, name: 'ストライク'});
 	return A2(
-		$author$project$Card$CardDef,
+		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		_Utils_update(
-			n,
-			{attack: 9}));
+		$author$project$RecordSetter$s_attack(9));
 }();
 var $author$project$Main$initialCards = _Utils_ap(
 	A2($elm$core$List$repeat, 5, $author$project$Card$Ironclad$strike.normal),
@@ -9662,11 +9682,9 @@ var $author$project$Card$Ironclad$anger = function () {
 		$author$project$Card$default,
 		{attack: 6, name: '怒り'});
 	return A2(
-		$author$project$Card$CardDef,
+		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		_Utils_update(
-			n,
-			{attack: 8}));
+		$author$project$RecordSetter$s_attack(8));
 }();
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
@@ -11439,11 +11457,13 @@ var $author$project$Main$UpgradeCard = F2(
 	function (a, b) {
 		return {$: 'UpgradeCard', a: a, b: b};
 	});
+var $elm$core$String$endsWith = _String_endsWith;
 var $author$project$Utils$prop1 = F2(
 	function (key, arg) {
 		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
 	});
 var $author$project$Utils$gridColumnGap = $author$project$Utils$prop1('grid-column-gap');
+var $author$project$Utils$noHtml = $rtfeldman$elm_css$Html$Styled$text('');
 var $author$project$Card$Ironclad$view = function (card) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -11501,7 +11521,7 @@ var $author$project$Main$currentCardList = function (m) {
 														$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
 														$author$project$Utils$gridTemplateColumns(
 														_List_fromArray(
-															['auto', 'auto'])),
+															['1fr', '1fr'])),
 														$author$project$Utils$gridColumnGap(
 														$rtfeldman$elm_css$Css$px(5))
 													]))
@@ -11519,7 +11539,7 @@ var $author$project$Main$currentCardList = function (m) {
 													[
 														$rtfeldman$elm_css$Html$Styled$text('除去')
 													])),
-												A2(
+												A2($elm$core$String$endsWith, '+', card.name) ? $author$project$Utils$noHtml : A2(
 												$rtfeldman$elm_css$Html$Styled$button,
 												_List_fromArray(
 													[

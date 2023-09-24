@@ -1,6 +1,12 @@
 module Utils exposing (..)
 
 import Css exposing (..)
+import Html.Styled exposing (Html, text)
+
+
+noHtml : Html msg
+noHtml =
+    text ""
 
 
 noCmd : model -> ( model, Cmd msg )
