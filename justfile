@@ -1,5 +1,7 @@
 setem: 
     redo-ifchange src/RecordSetter.elm 
+setup:
+	npm install elm elm-watch
 start: 
-	elm-watch hot
+	npx elm-watch hot
 	open build/sts-seventeen.html

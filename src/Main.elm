@@ -11,7 +11,7 @@ import Html.Styled.Events exposing (..)
 import List.Extra
 import RecordSetter exposing (..)
 import StylesExtra exposing (gapByMargin, gapByMarginLeft)
-import Utils exposing (noCmd)
+import Utils exposing (..)
 
 
 type alias Model =
@@ -72,9 +72,9 @@ pushCardsHistory f m =
 view : Model -> List (Html Msg)
 view m =
     [ div [ css [ gapByMargin 30 ] ]
-        [ currentCardList m
-        , addCardForm m
+        [ addCardForm m
         , removeCardForm m
+        , currentCardList m
         , calcResut m
         ]
     ]
@@ -84,7 +84,13 @@ currentCardList : Model -> Html Msg
 currentCardList m =
     div []
         [ text "カード一覧"
-        , div [ css [ displayFlex, gapByMarginLeft 20 ] ]
+        , div
+            [ css
+                [ display grid
+                , gridTemplateColumns [ "1fr", "1fr", "1fr", "1fr", "1fr" ]
+                , gridColumnGap (px 10)
+                ]
+            ]
             (m.cards
                 |> History.newest initialCards
                 |> List.indexedMap
