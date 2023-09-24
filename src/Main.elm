@@ -214,9 +214,10 @@ calcResut m =
             , intRow "総ブロック" block
             , intRow "枚数" cardCount
             , intRow "総マナ消費" manaConsumeSum
+            , intRow "総ドロー" drawSum
             , floatRow "一周ターン数" loopTurn
             , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
-            , floatRowWithMana "脆弱考慮: ダメージ/ターン数 *1" dmgPerLoopVul dmgPerLoopVulMana
+            , floatRowWithMana "弱体考慮: ダメージ/ターン数 *1" dmgPerLoopVul dmgPerLoopVulMana
             , floatRowWithMana "ブロック/ターン数" blockPerLoop blockPerLoopMana
             ]
 

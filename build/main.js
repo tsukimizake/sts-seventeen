@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695526587984"
+    "1695526801584"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11444,9 +11444,10 @@ var $author$project$Main$calcResut = function (m) {
 					A2($author$project$Main$intRow, '総ブロック', block),
 					A2($author$project$Main$intRow, '枚数', cardCount),
 					A2($author$project$Main$intRow, '総マナ消費', manaConsumeSum),
+					A2($author$project$Main$intRow, '総ドロー', drawSum),
 					A2($author$project$Main$floatRow, '一周ターン数', loopTurn),
 					A3($author$project$Main$floatRowWithMana, 'ダメージ/ターン数', dmgPerLoop, dmgPerLoopMana),
-					A3($author$project$Main$floatRowWithMana, '脆弱考慮: ダメージ/ターン数 *1', dmgPerLoopVul, dmgPerLoopVulMana),
+					A3($author$project$Main$floatRowWithMana, '弱体考慮: ダメージ/ターン数 *1', dmgPerLoopVul, dmgPerLoopVulMana),
 					A3($author$project$Main$floatRowWithMana, 'ブロック/ターン数', blockPerLoop, blockPerLoopMana)
 				])));
 };
