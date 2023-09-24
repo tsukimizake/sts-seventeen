@@ -230,9 +230,18 @@ seeingRed =
     mkCardDef n (s_mana -2)
 
 
+immolate : CardDef
+immolate =
+    let
+        n =
+            { default | name = "焼身", attack = 21, mana = 2 }
+    in
+    mkCardDef n (s_attack 28)
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate ]
 
 
 possibleCards : List Card
