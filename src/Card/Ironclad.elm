@@ -31,6 +31,11 @@ anger =
     { default | name = "怒り", attack = 6 }
 
 
+angerP : Card
+angerP =
+    { anger | name = "怒り+", attack = 8 }
+
+
 view : Card -> Html msg
 view card =
     div [ css [] ] [ text <| .name card ]
@@ -40,7 +45,7 @@ upgrade : Card -> Card
 upgrade card =
     let
         ugMap =
-            AssocList.fromList [ ( strike, strikeP ) ]
+            AssocList.fromList [ ( strike, strikeP ), ( anger, angerP ) ]
     in
     AssocList.get card ugMap
         |> Maybe.withDefault card
