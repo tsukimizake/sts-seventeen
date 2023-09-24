@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695522490940"
+    "1695524637269"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11263,135 +11263,82 @@ var $author$project$Main$addCardForm = function (_v0) {
 					$author$project$Main$possibleCards))
 			]));
 };
-var $rtfeldman$elm_css$Css$displayFlex = A2($rtfeldman$elm_css$Css$property, 'display', 'flex');
-var $rtfeldman$elm_css$Css$Structure$Child = {$: 'Child'};
-var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
-	function (a, b) {
-		return {$: 'NestSnippet', a: a, b: b};
-	});
-var $rtfeldman$elm_css$Css$Global$children = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Child);
-var $rtfeldman$elm_css$Css$Global$everything = function (styles) {
-	return A2(
-		$rtfeldman$elm_css$VirtualDom$Styled$makeSnippet,
-		styles,
-		$rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence(_List_Nil));
-};
-var $rtfeldman$elm_css$Css$marginLeft = $rtfeldman$elm_css$Css$prop1('margin-left');
-var $rtfeldman$elm_css$Css$Preprocess$ExtendSelector = F2(
-	function (a, b) {
-		return {$: 'ExtendSelector', a: a, b: b};
-	});
-var $rtfeldman$elm_css$Css$Structure$PseudoClassSelector = function (a) {
-	return {$: 'PseudoClassSelector', a: a};
-};
-var $rtfeldman$elm_css$Css$pseudoClass = function (_class) {
-	return $rtfeldman$elm_css$Css$Preprocess$ExtendSelector(
-		$rtfeldman$elm_css$Css$Structure$PseudoClassSelector(_class));
-};
-var $rtfeldman$elm_css$Css$nthChild = function (str) {
-	return $rtfeldman$elm_css$Css$pseudoClass('nth-child(' + (str + ')'));
-};
-var $author$project$StylesExtra$gapByMarginLeft = function (n) {
-	return $rtfeldman$elm_css$Css$Global$children(
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Css$Global$everything(
-				_List_fromArray(
-					[
-						A2(
-						$rtfeldman$elm_css$Css$nthChild,
-						'n+2',
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$marginLeft(
-								$rtfeldman$elm_css$Css$px(n))
-							]))
-					]))
-			]));
-};
+var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
 var $author$project$Main$row = F3(
 	function (formatter, label, val) {
-		return A2(
-			$rtfeldman$elm_css$Html$Styled$div,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$displayFlex,
-							$author$project$StylesExtra$gapByMarginLeft(10)
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text(label)
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text(
-							formatter(val))
-						]))
-				]));
+		return _List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(label)
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(
+						formatter(val))
+					])),
+				A2($rtfeldman$elm_css$Html$Styled$div, _List_Nil, _List_Nil)
+			]);
 	});
 var $author$project$Main$floatRow = $author$project$Main$row($elm$core$String$fromFloat);
 var $rtfeldman$elm_css$Css$minWidth = $rtfeldman$elm_css$Css$prop1('min-width');
 var $author$project$Main$floatRowWithMana = F3(
 	function (label, val, valMana) {
-		return A2(
-			$rtfeldman$elm_css$Html$Styled$div,
-			_List_fromArray(
-				[
-					$rtfeldman$elm_css$Html$Styled$Attributes$css(
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$displayFlex,
-							$author$project$StylesExtra$gapByMarginLeft(10)
-						]))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text(label)
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$Attributes$css(
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Css$minWidth(
-									$rtfeldman$elm_css$Css$px(170))
-								]))
-						]),
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text(
-							$elm$core$String$fromFloat(val))
-						])),
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text(
-							'マナ考慮: ' + $elm$core$String$fromFloat(valMana))
-						]))
-				]));
+		return _List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(label)
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$minWidth(
+								$rtfeldman$elm_css$Css$px(170))
+							]))
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(
+						$elm$core$String$fromFloat(val))
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(
+						'マナ考慮: ' + $elm$core$String$fromFloat(valMana))
+					]))
+			]);
 	});
-var $author$project$Main$intRow = $author$project$Main$row($elm$core$String$fromInt);
+var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
+var $author$project$Utils$grid = _Utils_update(
+	$rtfeldman$elm_css$Css$block,
+	{value: 'grid'});
+var $author$project$Utils$gridTemplateColumns = function (units) {
+	return A2(
+		$rtfeldman$elm_css$Css$property,
+		'grid-template-columns',
+		A2($elm$core$String$join, ' ', units));
+};
+var $author$project$Main$intRow = F2(
+	function (s, n) {
+		return A3($author$project$Main$row, $elm$core$String$fromInt, s, n);
+	});
 var $elm$core$Basics$min = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) < 0) ? x : y;
@@ -11415,16 +11362,25 @@ var $author$project$Main$calcResut = function (m) {
 				return $.mana;
 			},
 			currentCards));
+	var vulTurn = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.vulnerable;
+			},
+			currentCards));
 	var cardCount = $elm$core$List$length(currentCards);
 	var loopTurn = cardCount / 5;
 	var perLoop = function (n) {
 		return n / loopTurn;
 	};
 	var dmgPerLoop = perLoop(damage);
+	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var perLoopMana = function (vPerLoop) {
 		return A2($elm$core$Basics$min, vPerLoop, vPerLoop * ((3 * loopTurn) / manaSum));
 	};
 	var dmgPerLoopMana = perLoopMana(dmgPerLoop);
+	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
 	var block = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11436,17 +11392,29 @@ var $author$project$Main$calcResut = function (m) {
 	var blockPerLoopMana = perLoopMana(blockPerLoop);
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
-		_List_Nil,
 		_List_fromArray(
 			[
-				A2($author$project$Main$intRow, '総ダメージ', damage),
-				A2($author$project$Main$intRow, '総ブロック', block),
-				A2($author$project$Main$intRow, '枚数', cardCount),
-				A2($author$project$Main$intRow, '総マナ', manaSum),
-				A2($author$project$Main$floatRow, '一周ターン数', loopTurn),
-				A3($author$project$Main$floatRowWithMana, 'ダメージ/ターン数', dmgPerLoop, dmgPerLoopMana),
-				A3($author$project$Main$floatRowWithMana, 'ブロック/ターン数', blockPerLoop, blockPerLoopMana)
-			]));
+				$rtfeldman$elm_css$Html$Styled$Attributes$css(
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
+						$author$project$Utils$gridTemplateColumns(
+						_List_fromArray(
+							['auto', 'auto', 'auto']))
+					]))
+			]),
+		$elm$core$List$concat(
+			_List_fromArray(
+				[
+					A2($author$project$Main$intRow, '総ダメージ', damage),
+					A2($author$project$Main$intRow, '総ブロック', block),
+					A2($author$project$Main$intRow, '枚数', cardCount),
+					A2($author$project$Main$intRow, '総マナ消費', manaSum),
+					A2($author$project$Main$floatRow, '一周ターン数', loopTurn),
+					A3($author$project$Main$floatRowWithMana, 'ダメージ/ターン数', dmgPerLoop, dmgPerLoopMana),
+					A3($author$project$Main$floatRowWithMana, '脆弱考慮: ダメージ/ターン数', dmgPerLoopVul, dmgPerLoopVulMana),
+					A3($author$project$Main$floatRowWithMana, 'ブロック/ターン数', blockPerLoop, blockPerLoopMana)
+				])));
 };
 var $author$project$Main$RemoveCard = function (a) {
 	return {$: 'RemoveCard', a: a};
@@ -11455,22 +11423,11 @@ var $author$project$Main$UpgradeCard = F2(
 	function (a, b) {
 		return {$: 'UpgradeCard', a: a, b: b};
 	});
-var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
-var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
-var $author$project$Utils$grid = _Utils_update(
-	$rtfeldman$elm_css$Css$block,
-	{value: 'grid'});
 var $author$project$Utils$prop1 = F2(
 	function (key, arg) {
 		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
 	});
 var $author$project$Utils$gridColumnGap = $author$project$Utils$prop1('grid-column-gap');
-var $author$project$Utils$gridTemplateColumns = function (units) {
-	return A2(
-		$rtfeldman$elm_css$Css$property,
-		'grid-template-columns',
-		A2($elm$core$String$join, ' ', units));
-};
 var $author$project$Card$Ironclad$view = function (card) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -11563,7 +11520,33 @@ var $author$project$Main$currentCardList = function (m) {
 					A2($author$project$History$newest, $author$project$Main$initialCards, m.cards)))
 			]));
 };
+var $rtfeldman$elm_css$Css$Structure$Child = {$: 'Child'};
+var $rtfeldman$elm_css$Css$Preprocess$NestSnippet = F2(
+	function (a, b) {
+		return {$: 'NestSnippet', a: a, b: b};
+	});
+var $rtfeldman$elm_css$Css$Global$children = $rtfeldman$elm_css$Css$Preprocess$NestSnippet($rtfeldman$elm_css$Css$Structure$Child);
+var $rtfeldman$elm_css$Css$Global$everything = function (styles) {
+	return A2(
+		$rtfeldman$elm_css$VirtualDom$Styled$makeSnippet,
+		styles,
+		$rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence(_List_Nil));
+};
 var $rtfeldman$elm_css$Css$marginTop = $rtfeldman$elm_css$Css$prop1('margin-top');
+var $rtfeldman$elm_css$Css$Preprocess$ExtendSelector = F2(
+	function (a, b) {
+		return {$: 'ExtendSelector', a: a, b: b};
+	});
+var $rtfeldman$elm_css$Css$Structure$PseudoClassSelector = function (a) {
+	return {$: 'PseudoClassSelector', a: a};
+};
+var $rtfeldman$elm_css$Css$pseudoClass = function (_class) {
+	return $rtfeldman$elm_css$Css$Preprocess$ExtendSelector(
+		$rtfeldman$elm_css$Css$Structure$PseudoClassSelector(_class));
+};
+var $rtfeldman$elm_css$Css$nthChild = function (str) {
+	return $rtfeldman$elm_css$Css$pseudoClass('nth-child(' + (str + ')'));
+};
 var $author$project$StylesExtra$gapByMargin = function (n) {
 	return $rtfeldman$elm_css$Css$Global$children(
 		_List_fromArray(
@@ -11626,10 +11609,10 @@ var $author$project$Main$view = function (m) {
 				]),
 			_List_fromArray(
 				[
+					$author$project$Main$calcResut(m),
 					$author$project$Main$addCardForm(m),
 					$author$project$Main$removeCardForm(m),
-					$author$project$Main$currentCardList(m),
-					$author$project$Main$calcResut(m)
+					$author$project$Main$currentCardList(m)
 				]))
 		]);
 };

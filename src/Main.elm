@@ -10,7 +10,7 @@ import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (..)
 import List.Extra
 import RecordSetter exposing (..)
-import StylesExtra exposing (gapByMargin, gapByMarginLeft)
+import StylesExtra exposing (gapByMargin)
 import Utils exposing (..)
 
 
@@ -72,10 +72,10 @@ pushCardsHistory f m =
 view : Model -> List (Html Msg)
 view m =
     [ div [ css [ gapByMargin 30 ] ]
-        [ addCardForm m
+        [ calcResut m
+        , addCardForm m
         , removeCardForm m
         , currentCardList m
-        , calcResut m
         ]
     ]
 
@@ -169,6 +169,15 @@ calcResut m =
         dmgPerLoop =
             perLoop damage
 
+        vulTurn =
+            currentCards |> List.map .vulnerable |> List.sum
+
+        dmgPerLoopVul =
+            dmgPerLoop + (toFloat vulTurn / loopTurn) * dmgPerLoop * 0.5
+
+        dmgPerLoopVulMana =
+            perLoopMana dmgPerLoopVul
+
         manaSum =
             currentCards |> List.map .mana |> List.sum
 
@@ -181,42 +190,43 @@ calcResut m =
         blockPerLoopMana =
             perLoopMana blockPerLoop
     in
-    div []
-        [ intRow "総ダメージ" damage
-        , intRow "総ブロック" block
-        , intRow "枚数" cardCount
-        , intRow "総マナ" manaSum
-        , floatRow "一周ターン数" loopTurn
-        , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
-        , floatRowWithMana "ブロック/ターン数" blockPerLoop blockPerLoopMana
-        ]
+    div [ css [ display grid, gridTemplateColumns [ "auto", "auto", "auto" ] ] ] <|
+        List.concat
+            [ intRow "総ダメージ" damage
+            , intRow "総ブロック" block
+            , intRow "枚数" cardCount
+            , intRow "総マナ消費" manaSum
+            , floatRow "一周ターン数" loopTurn
+            , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
+            , floatRowWithMana "脆弱考慮: ダメージ/ターン数" dmgPerLoopVul dmgPerLoopVulMana
+            , floatRowWithMana "ブロック/ターン数" blockPerLoop blockPerLoopMana
+            ]
 
 
-intRow : String -> Int -> Html msg
-intRow =
-    row String.fromInt
+intRow : String -> Int -> List (Html msg)
+intRow s n =
+    row String.fromInt s n
 
 
-floatRow : String -> Float -> Html msg
+floatRow : String -> Float -> List (Html msg)
 floatRow =
     row String.fromFloat
 
 
-floatRowWithMana : String -> Float -> Float -> Html msg
+floatRowWithMana : String -> Float -> Float -> List (Html msg)
 floatRowWithMana label val valMana =
-    div [ css [ displayFlex, gapByMarginLeft 10 ] ]
-        [ div [] [ text label ]
-        , div [ css [ minWidth (px 170) ] ] [ text <| String.fromFloat val ]
-        , div [] [ text <| "マナ考慮: " ++ String.fromFloat valMana ]
-        ]
+    [ div [] [ text label ]
+    , div [ css [ minWidth (px 170) ] ] [ text <| String.fromFloat val ]
+    , div [] [ text <| "マナ考慮: " ++ String.fromFloat valMana ]
+    ]
 
 
-row : (num -> String) -> String -> num -> Html msg
+row : (num -> String) -> String -> num -> List (Html msg)
 row formatter label val =
-    div [ css [ displayFlex, gapByMarginLeft 10 ] ]
-        [ div [] [ text label ]
-        , div [] [ text <| formatter val ]
-        ]
+    [ div [] [ text label ]
+    , div [] [ text <| formatter val ]
+    , div [] []
+    ]
 
 
 main : Program () Model Msg
