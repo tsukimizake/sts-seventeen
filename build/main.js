@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695526801584"
+    "1695532847035"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8408,13 +8408,33 @@ var $elm$browser$Browser$document = _Browser_document;
 var $author$project$History$init = function (a) {
 	return _Utils_Tuple2(a, _List_Nil);
 };
+var $author$project$Card$CardDef = F2(
+	function (normal, plus) {
+		return {normal: normal, plus: plus};
+	});
 var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
-var $author$project$Card$Ironclad$bash = _Utils_update(
-	$author$project$Card$default,
-	{attack: 8, mana: 2, name: '強打', vulnerable: 2});
-var $author$project$Card$Ironclad$guard = _Utils_update(
-	$author$project$Card$default,
-	{guard: 5, mana: 1, name: '防御'});
+var $author$project$Card$Ironclad$bash = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 8, mana: 2, name: '強打', vulnerable: 2});
+	return A2(
+		$author$project$Card$CardDef,
+		n,
+		_Utils_update(
+			n,
+			{attack: 11}));
+}();
+var $author$project$Card$Ironclad$guard = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{guard: 5, mana: 1, name: '防御'});
+	return A2(
+		$author$project$Card$CardDef,
+		n,
+		_Utils_update(
+			n,
+			{guard: 8}));
+}();
 var $elm$core$List$repeatHelp = F3(
 	function (result, n, value) {
 		repeatHelp:
@@ -8436,15 +8456,23 @@ var $elm$core$List$repeat = F2(
 	function (n, value) {
 		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
 	});
-var $author$project$Card$Ironclad$strike = _Utils_update(
-	$author$project$Card$default,
-	{attack: 6, mana: 1, name: 'ストライク'});
+var $author$project$Card$Ironclad$strike = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 6, mana: 1, name: 'ストライク'});
+	return A2(
+		$author$project$Card$CardDef,
+		n,
+		_Utils_update(
+			n,
+			{attack: 9}));
+}();
 var $author$project$Main$initialCards = _Utils_ap(
-	A2($elm$core$List$repeat, 5, $author$project$Card$Ironclad$strike),
+	A2($elm$core$List$repeat, 5, $author$project$Card$Ironclad$strike.normal),
 	_Utils_ap(
-		A2($elm$core$List$repeat, 4, $author$project$Card$Ironclad$guard),
+		A2($elm$core$List$repeat, 4, $author$project$Card$Ironclad$guard.normal),
 		_List_fromArray(
-			[$author$project$Card$Ironclad$bash])));
+			[$author$project$Card$Ironclad$bash.normal])));
 var $author$project$Main$initialModel = {
 	history: $author$project$History$init(
 		{cards: $author$project$Main$initialCards, mana: 3})
@@ -9629,15 +9657,17 @@ var $elm_community$list_extra$List$Extra$setAt = F2(
 			index,
 			$elm$core$Basics$always(value));
 	});
-var $author$project$Card$Ironclad$anger = _Utils_update(
-	$author$project$Card$default,
-	{attack: 6, name: '怒り'});
-var $author$project$Card$Ironclad$angerP = _Utils_update(
-	$author$project$Card$Ironclad$anger,
-	{attack: 8, name: '怒り+'});
-var $pzp1997$assoc_list$AssocList$D = function (a) {
-	return {$: 'D', a: a};
-};
+var $author$project$Card$Ironclad$anger = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 6, name: '怒り'});
+	return A2(
+		$author$project$Card$CardDef,
+		n,
+		_Utils_update(
+			n,
+			{attack: 8}));
+}();
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -9649,67 +9679,25 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
-var $pzp1997$assoc_list$AssocList$remove = F2(
-	function (targetKey, _v0) {
-		var alist = _v0.a;
-		return $pzp1997$assoc_list$AssocList$D(
-			A2(
-				$elm$core$List$filter,
-				function (_v1) {
-					var key = _v1.a;
-					return !_Utils_eq(key, targetKey);
-				},
-				alist));
-	});
-var $pzp1997$assoc_list$AssocList$insert = F3(
-	function (key, value, dict) {
-		var _v0 = A2($pzp1997$assoc_list$AssocList$remove, key, dict);
-		var alteredAlist = _v0.a;
-		return $pzp1997$assoc_list$AssocList$D(
-			A2(
-				$elm$core$List$cons,
-				_Utils_Tuple2(key, value),
-				alteredAlist));
-	});
-var $pzp1997$assoc_list$AssocList$fromList = function (alist) {
-	return A3(
-		$elm$core$List$foldl,
-		F2(
-			function (_v0, result) {
-				var key = _v0.a;
-				var value = _v0.b;
-				return A3($pzp1997$assoc_list$AssocList$insert, key, value, result);
-			}),
-		$pzp1997$assoc_list$AssocList$D(_List_Nil),
-		alist);
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
 };
-var $pzp1997$assoc_list$AssocList$get = F2(
-	function (targetKey, _v0) {
-		get:
-		while (true) {
-			var alist = _v0.a;
-			if (!alist.b) {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var _v2 = alist.a;
-				var key = _v2.a;
-				var value = _v2.b;
-				var rest = alist.b;
-				if (_Utils_eq(key, targetKey)) {
-					return $elm$core$Maybe$Just(value);
-				} else {
-					var $temp$targetKey = targetKey,
-						$temp$_v0 = $pzp1997$assoc_list$AssocList$D(rest);
-					targetKey = $temp$targetKey;
-					_v0 = $temp$_v0;
-					continue get;
-				}
-			}
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
 		}
 	});
-var $author$project$Card$Ironclad$strikeP = _Utils_update(
-	$author$project$Card$Ironclad$strike,
-	{attack: 9, name: 'ストライク+'});
 var $elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
 		if (maybe.$ === 'Just') {
@@ -9720,16 +9708,23 @@ var $elm$core$Maybe$withDefault = F2(
 		}
 	});
 var $author$project$Card$Ironclad$upgrade = function (card) {
-	var ugMap = $pzp1997$assoc_list$AssocList$fromList(
-		_List_fromArray(
-			[
-				_Utils_Tuple2($author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$strikeP),
-				_Utils_Tuple2($author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$angerP)
-			]));
+	var defs = _List_fromArray(
+		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash, $author$project$Card$Ironclad$anger]);
 	return A2(
 		$elm$core$Maybe$withDefault,
 		card,
-		A2($pzp1997$assoc_list$AssocList$get, card, ugMap));
+		A2(
+			$elm$core$Maybe$map,
+			function ($) {
+				return $.plus;
+			},
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (def) {
+						return _Utils_eq(def.normal.name, card.name);
+					},
+					defs))));
 };
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -9961,16 +9956,6 @@ var $rtfeldman$elm_css$Css$Structure$compactStylesheet = function (_v0) {
 		namespaces: namespaces
 	};
 };
-var $elm$core$Maybe$map = F2(
-	function (f, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return $elm$core$Maybe$Just(
-				f(value));
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
-	});
 var $rtfeldman$elm_css$Css$Structure$Output$charsetToString = function (charset) {
 	return A2(
 		$elm$core$Maybe$withDefault,
@@ -10600,15 +10585,6 @@ var $rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock = F2(
 			first,
 			A2($rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, update, rest));
 	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $rtfeldman$elm_css$Css$Preprocess$Resolve$last = function (list) {
 	last:
 	while (true) {
@@ -11214,8 +11190,13 @@ var $rtfeldman$elm_css$Html$Styled$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $author$project$Main$possibleCards = _List_fromArray(
-	[$author$project$Card$Ironclad$anger]);
+var $author$project$Main$possibleCards = A2(
+	$elm$core$List$map,
+	function ($) {
+		return $.normal;
+	},
+	_List_fromArray(
+		[$author$project$Card$Ironclad$anger]));
 var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
 var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
 var $elm$core$String$fromFloat = _String_fromNumber;

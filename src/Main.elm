@@ -31,7 +31,7 @@ initialModel =
 
 initialCards : List Card
 initialCards =
-    List.repeat 5 Card.strike ++ List.repeat 4 Card.guard ++ [ Card.bash ]
+    List.repeat 5 Card.strike.normal ++ List.repeat 4 Card.guard.normal ++ [ Card.bash.normal ]
 
 
 type Msg
@@ -152,6 +152,7 @@ removeCardForm m =
 possibleCards : List Card
 possibleCards =
     [ Card.anger ]
+        |> List.map .normal
 
 
 calcResut : Model -> Html Msg

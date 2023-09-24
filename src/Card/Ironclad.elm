@@ -1,51 +1,58 @@
 module Card.Ironclad exposing (..)
 
-import AssocList
 import Card exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (css)
 
 
-strike : Card
+strike : CardDef
 strike =
-    { default | name = "ストライク", attack = 6, mana = 1 }
+    let
+        n =
+            { default | name = "ストライク", attack = 6, mana = 1 }
+    in
+    CardDef n { n | attack = 9 }
 
 
-strikeP : Card
-strikeP =
-    { strike | name = "ストライク+", attack = 9 }
-
-
-guard : Card
+guard : CardDef
 guard =
-    { default | name = "防御", guard = 5, mana = 1 }
+    let
+        n =
+            { default | name = "防御", guard = 5, mana = 1 }
+    in
+    CardDef n { n | guard = 8 }
 
 
-bash : Card
+bash : CardDef
 bash =
-    { default | name = "強打", attack = 8, mana = 2, vulnerable = 2 }
+    let
+        n =
+            { default | name = "強打", attack = 8, mana = 2, vulnerable = 2 }
+    in
+    CardDef n { n | attack = 11 }
 
 
-anger : Card
+anger : CardDef
 anger =
-    { default | name = "怒り", attack = 6 }
-
-
-angerP : Card
-angerP =
-    { anger | name = "怒り+", attack = 8 }
-
-
-view : Card -> Html msg
-view card =
-    div [ css [] ] [ text <| .name card ]
+    let
+        n =
+            { default | name = "怒り", attack = 6 }
+    in
+    CardDef n { n | attack = 8 }
 
 
 upgrade : Card -> Card
 upgrade card =
     let
-        ugMap =
-            AssocList.fromList [ ( strike, strikeP ), ( anger, angerP ) ]
+        defs =
+            [ strike, guard, bash, anger ]
     in
-    AssocList.get card ugMap
+    List.filter (\def -> def.normal.name == card.name) defs
+        |> List.head
+        |> Maybe.map .plus
         |> Maybe.withDefault card
+
+
+view : Card -> Html msg
+view card =
+    div [ css [] ] [ text <| .name card ]

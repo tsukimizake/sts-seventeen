@@ -1,6 +1,12 @@
 module Card exposing (..)
 
 
+type alias CardDef =
+    { normal : Card
+    , plus : Card
+    }
+
+
 type alias Card =
     { name : String
     , guard : Int
