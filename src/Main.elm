@@ -6,7 +6,7 @@ import Card.Ironclad as Card
 import Css exposing (..)
 import History exposing (History)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes exposing (css, type_, value)
 import Html.Styled.Events exposing (..)
 import List.Extra
 import RecordSetter exposing (..)
@@ -21,12 +21,19 @@ type alias Model =
 type alias State =
     { cards : List Card
     , mana : Int
+    , strength : Float
     }
 
 
 initialModel : Model
 initialModel =
-    { history = History.init <| { cards = initialCards, mana = 3 } }
+    { history =
+        History.init <|
+            { cards = initialCards
+            , mana = 3
+            , strength = 0
+            }
+    }
 
 
 initialCards : List Card
@@ -39,6 +46,7 @@ type Msg
     | RemoveCard Int
     | UpgradeCard Int Card
     | RevertChange
+    | UpdateStrength (Maybe Float)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -64,6 +72,11 @@ update msg model =
                 |> s_history (History.pop model.history)
                 |> noCmd
 
+        UpdateStrength val ->
+            model
+                |> s_history (History.update (\state -> { state | strength = val |> Maybe.withDefault 0 }) model.history)
+                |> noCmd
+
 
 pushCardsHistory : (List Card -> List Card) -> Model -> Model
 pushCardsHistory f m =
@@ -79,7 +92,7 @@ pushCardsHistory f m =
 view : Model -> List (Html Msg)
 view m =
     [ div [ css [ gapByMargin 30 ] ]
-        [ calcResut m
+        [ calcResult <| History.newest m.history
         , addCardForm m
         , removeCardForm m
         , currentCardList m
@@ -90,7 +103,17 @@ view m =
 
 notes : Html msg
 notes =
-    div [] [ text "*1 現状強打自体にも1.5倍がかかっていて大きめに出ています" ]
+    let
+        lines =
+            [ "*1 現状強打自体にも1.5倍がかかっていて大きめに出ています"
+            , "本家17式と同様に1周目で大暴れできるデッキを作ることに着目しており、廃棄は考慮していません"
+            , "筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定"
+            , "ヘモキネシスなどのHP減少はブロックの減少として表現しています"
+            ]
+    in
+    div [] <|
+        h2 [] [ text "以下注意書き" ]
+            :: List.map (\line -> div [] [ text line ]) lines
 
 
 currentCardList : Model -> Html Msg
@@ -100,8 +123,9 @@ currentCardList m =
         , div
             [ css
                 [ display grid
-                , gridTemplateColumns [ "1fr", "1fr", "1fr", "1fr", "1fr" ]
+                , gridTemplateColumns <| List.repeat 5 "1fr"
                 , gridColumnGap (px 10)
+                , gridRowGap (px 10)
                 ]
             ]
             (m.history
@@ -133,10 +157,18 @@ currentCardList m =
 
 addCardForm : Model -> Html Msg
 addCardForm _ =
-    div []
+    div
+        []
         [ text "カードの追加"
-        , div []
-            (possibleCards
+        , div
+            [ css
+                [ display grid
+                , gridTemplateColumns <| List.repeat 10 "1fr"
+                , gridColumnGap (px 10)
+                , gridRowGap (px 10)
+                ]
+            ]
+            (Card.possibleCards
                 |> List.map
                     (\card ->
                         button [ onClick <| AddCard card, css [ borderStyle solid, borderWidth (px 1) ] ] [ text card.name ]
@@ -153,17 +185,11 @@ removeCardForm m =
         ]
 
 
-possibleCards : List Card
-possibleCards =
-    [ Card.anger ]
-        |> List.map .normal
-
-
-calcResut : Model -> Html Msg
-calcResut m =
+calcResult : State -> Html Msg
+calcResult state =
     let
         currentCards =
-            m.history |> History.newest |> .cards
+            state.cards
 
         damage =
             currentCards |> List.map .attack |> List.sum
@@ -184,7 +210,7 @@ calcResut m =
             toFloat n / loopTurn
 
         manaPerTurn =
-            m.history |> History.newest |> .mana
+            state.mana
 
         perLoopMana valPerLoop =
             min valPerLoop (valPerLoop * ((toFloat manaPerTurn * loopTurn) / toFloat manaConsumeSum))
@@ -216,6 +242,7 @@ calcResut m =
     div [ css [ display grid, gridTemplateColumns [ "auto", "auto", "auto" ] ] ] <|
         List.concat
             [ intRow "総ダメージ" damage
+            , floatField UpdateStrength "筋力" state.strength
             , intRow "総ブロック" block
             , intRow "枚数" cardCount
             , intRow "総マナ消費" manaConsumeSum
@@ -225,6 +252,13 @@ calcResut m =
             , floatRowWithMana "弱体考慮: ダメージ/ターン数 *1" dmgPerLoopVul dmgPerLoopVulMana
             , floatRowWithMana "ブロック/ターン数" blockPerLoop blockPerLoopMana
             ]
+
+
+floatField : (Maybe Float -> Msg) -> String -> Float -> List (Html Msg)
+floatField msg label val =
+    [ div [] [ text label ]
+    , input [ type_ "number", value <| String.fromFloat val, onInput (msg << String.toFloat) ] []
+    ]
 
 
 intRow : String -> Int -> List (Html msg)

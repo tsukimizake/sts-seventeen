@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695534355219"
+    "1695544751329"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8413,7 +8413,7 @@ var $elm$core$Basics$composeR = F3(
 		return g(
 			f(x));
 	});
-var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
+var $author$project$Card$default = {attack: 0, attackTimes: 1, draw: 0, guard: 0, mana: 0, name: '', strength: 0, vulnerable: 0};
 var $author$project$Card$CardDef = F2(
 	function (normal, plus) {
 		return {normal: normal, plus: plus};
@@ -8509,7 +8509,7 @@ var $author$project$Main$initialCards = _Utils_ap(
 			[$author$project$Card$Ironclad$bash.normal])));
 var $author$project$Main$initialModel = {
 	history: $author$project$History$init(
-		{cards: $author$project$Main$initialCards, mana: 3})
+		{cards: $author$project$Main$initialCards, mana: 3, strength: 0})
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -9691,6 +9691,14 @@ var $elm_community$list_extra$List$Extra$setAt = F2(
 			index,
 			$elm$core$Basics$always(value));
 	});
+var $author$project$History$update = F2(
+	function (f, _v0) {
+		var hd = _v0.a;
+		var his = _v0.b;
+		return _Utils_Tuple2(
+			f(hd),
+			A2($elm$core$List$cons, hd, his));
+	});
 var $author$project$Card$Ironclad$anger = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -9700,6 +9708,105 @@ var $author$project$Card$Ironclad$anger = function () {
 		n,
 		$author$project$RecordSetter$s_attack(8));
 }();
+var $author$project$Card$Ironclad$cleave = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 8, mana: 1, name: 'なぎ払い'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(11));
+}();
+var $author$project$Card$Ironclad$feed = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 10, mana: 1, name: '捕食'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(12));
+}();
+var $author$project$Card$Ironclad$ghostArmor = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{guard: 10, mana: 1, name: 'ゴーストアーマー'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_guard(13));
+}();
+var $author$project$Card$Ironclad$headButt = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 9, mana: 1, name: 'ヘッドバット'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(12));
+}();
+var $author$project$Card$Ironclad$hemokinesis = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 15, guard: -2, mana: 1, name: 'ヘモキネシス'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(20));
+}();
+var $author$project$Card$Ironclad$ranpage = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 8, mana: 1, name: 'ランページ'});
+	return A2($author$project$Card$Ironclad$mkCardDef, n, $elm$core$Basics$identity);
+}();
+var $author$project$Card$Ironclad$shrugItOff = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{draw: 1, guard: 8, mana: 1, name: '受け流し'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_guard(11));
+}();
+var $author$project$Card$Ironclad$thunderClap = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 4, mana: 1, name: 'サンダークラップ', vulnerable: 1});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(7));
+}();
+var $author$project$Card$Ironclad$trueGrit = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{guard: 7, mana: 1, name: '不屈の闘志'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_guard(9));
+}();
+var $author$project$Card$Ironclad$twinStrike = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 5, attackTimes: 2, mana: 1, name: 'ツインストライク'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(7));
+}();
+var $author$project$Card$Ironclad$undefinedCard = A2(
+	$author$project$Card$Ironclad$mkCardDef,
+	_Utils_update(
+		$author$project$Card$default,
+		{name: '未実装カード'}),
+	$elm$core$Basics$identity);
+var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike]);
+var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
+	_List_fromArray(
+		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
+	$author$project$Card$Ironclad$possibleCardDefs);
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -9740,8 +9847,6 @@ var $elm$core$Maybe$withDefault = F2(
 		}
 	});
 var $author$project$Card$Ironclad$upgrade = function (card) {
-	var defs = _List_fromArray(
-		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash, $author$project$Card$Ironclad$anger]);
 	return A2(
 		$elm$core$Maybe$withDefault,
 		card,
@@ -9756,7 +9861,7 @@ var $author$project$Card$Ironclad$upgrade = function (card) {
 					function (def) {
 						return _Utils_eq(def.normal.name, card.name);
 					},
-					defs))));
+					$author$project$Card$Ironclad$allCardDefs))));
 };
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -9791,11 +9896,27 @@ var $author$project$Main$update = F2(
 								cards);
 						},
 						model));
-			default:
+			case 'RevertChange':
 				return $author$project$Utils$noCmd(
 					A2(
 						$author$project$RecordSetter$s_history,
 						$author$project$History$pop(model.history),
+						model));
+			default:
+				var val = msg.a;
+				return $author$project$Utils$noCmd(
+					A2(
+						$author$project$RecordSetter$s_history,
+						A2(
+							$author$project$History$update,
+							function (state) {
+								return _Utils_update(
+									state,
+									{
+										strength: A2($elm$core$Maybe$withDefault, 0, val)
+									});
+							},
+							model.history),
 						model));
 		}
 	});
@@ -11196,7 +11317,25 @@ var $rtfeldman$elm_css$Html$Styled$Internal$css = function (styles) {
 	return A3($rtfeldman$elm_css$VirtualDom$Styled$Attribute, classProperty, true, cssTemplate);
 };
 var $rtfeldman$elm_css$Html$Styled$Attributes$css = $rtfeldman$elm_css$Html$Styled$Internal$css;
+var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
 var $rtfeldman$elm_css$Html$Styled$div = $rtfeldman$elm_css$Html$Styled$node('div');
+var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
+var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
+var $author$project$Utils$grid = _Utils_update(
+	$rtfeldman$elm_css$Css$block,
+	{value: 'grid'});
+var $author$project$Utils$prop1 = F2(
+	function (key, arg) {
+		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
+	});
+var $author$project$Utils$gridColumnGap = $author$project$Utils$prop1('grid-column-gap');
+var $author$project$Utils$gridRowGap = $author$project$Utils$prop1('grid-row-gap');
+var $author$project$Utils$gridTemplateColumns = function (units) {
+	return A2(
+		$rtfeldman$elm_css$Css$property,
+		'grid-template-columns',
+		A2($elm$core$String$join, ' ', units));
+};
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -11222,15 +11361,13 @@ var $rtfeldman$elm_css$Html$Styled$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $author$project$Main$possibleCards = A2(
+var $author$project$Card$Ironclad$possibleCards = A2(
 	$elm$core$List$map,
 	function ($) {
 		return $.normal;
 	},
-	_List_fromArray(
-		[$author$project$Card$Ironclad$anger]));
+	$author$project$Card$Ironclad$possibleCardDefs);
 var $rtfeldman$elm_css$Css$PxUnits = {$: 'PxUnits'};
-var $rtfeldman$elm_css$Css$Structure$Compatible = {$: 'Compatible'};
 var $elm$core$String$fromFloat = _String_fromNumber;
 var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
 	function (units, unitLabel, numericValue) {
@@ -11276,7 +11413,20 @@ var $author$project$Main$addCardForm = function (_v0) {
 				$rtfeldman$elm_css$Html$Styled$text('カードの追加'),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$div,
-				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
+								$author$project$Utils$gridTemplateColumns(
+								A2($elm$core$List$repeat, 10, '1fr')),
+								$author$project$Utils$gridColumnGap(
+								$rtfeldman$elm_css$Css$px(10)),
+								$author$project$Utils$gridRowGap(
+								$rtfeldman$elm_css$Css$px(10))
+							]))
+					]),
 				A2(
 					$elm$core$List$map,
 					function (card) {
@@ -11299,10 +11449,88 @@ var $author$project$Main$addCardForm = function (_v0) {
 									$rtfeldman$elm_css$Html$Styled$text(card.name)
 								]));
 					},
-					$author$project$Main$possibleCards))
+					$author$project$Card$Ironclad$possibleCards))
 			]));
 };
-var $rtfeldman$elm_css$Css$display = $rtfeldman$elm_css$Css$prop1('display');
+var $author$project$Main$UpdateStrength = function (a) {
+	return {$: 'UpdateStrength', a: a};
+};
+var $rtfeldman$elm_css$Html$Styled$input = $rtfeldman$elm_css$Html$Styled$node('input');
+var $rtfeldman$elm_css$Html$Styled$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var $rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$rtfeldman$elm_css$VirtualDom$Styled$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
+	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $rtfeldman$elm_css$Html$Styled$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $rtfeldman$elm_css$Html$Styled$Events$onInput = function (tagger) {
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$rtfeldman$elm_css$Html$Styled$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $rtfeldman$elm_css$Html$Styled$Events$targetValue)));
+};
+var $elm$core$String$toFloat = _String_toFloat;
+var $rtfeldman$elm_css$VirtualDom$Styled$property = F2(
+	function (key, value) {
+		return A3(
+			$rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2($elm$virtual_dom$VirtualDom$property, key, value),
+			false,
+			'');
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			$rtfeldman$elm_css$VirtualDom$Styled$property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $rtfeldman$elm_css$Html$Styled$Attributes$type_ = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('type');
+var $rtfeldman$elm_css$Html$Styled$Attributes$value = $rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('value');
+var $author$project$Main$floatField = F3(
+	function (msg, label, val) {
+		return _List_fromArray(
+			[
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(label)
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$input,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$type_('number'),
+						$rtfeldman$elm_css$Html$Styled$Attributes$value(
+						$elm$core$String$fromFloat(val)),
+						$rtfeldman$elm_css$Html$Styled$Events$onInput(
+						A2($elm$core$Basics$composeL, msg, $elm$core$String$toFloat))
+					]),
+				_List_Nil)
+			]);
+	});
 var $author$project$Main$row = F3(
 	function (formatter, label, val) {
 		return _List_fromArray(
@@ -11364,16 +11592,6 @@ var $author$project$Main$floatRowWithMana = F3(
 					]))
 			]);
 	});
-var $rtfeldman$elm_css$Css$block = {display: $rtfeldman$elm_css$Css$Structure$Compatible, value: 'block'};
-var $author$project$Utils$grid = _Utils_update(
-	$rtfeldman$elm_css$Css$block,
-	{value: 'grid'});
-var $author$project$Utils$gridTemplateColumns = function (units) {
-	return A2(
-		$rtfeldman$elm_css$Css$property,
-		'grid-template-columns',
-		A2($elm$core$String$join, ' ', units));
-};
 var $author$project$Main$intRow = F2(
 	function (s, n) {
 		return A3($author$project$Main$row, $elm$core$String$fromInt, s, n);
@@ -11385,9 +11603,9 @@ var $elm$core$Basics$min = F2(
 var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
-var $author$project$Main$calcResut = function (m) {
-	var manaPerTurn = $author$project$History$newest(m.history).mana;
-	var currentCards = $author$project$History$newest(m.history).cards;
+var $author$project$Main$calcResult = function (state) {
+	var manaPerTurn = state.mana;
+	var currentCards = state.cards;
 	var damage = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11457,6 +11675,7 @@ var $author$project$Main$calcResut = function (m) {
 			_List_fromArray(
 				[
 					A2($author$project$Main$intRow, '総ダメージ', damage),
+					A3($author$project$Main$floatField, $author$project$Main$UpdateStrength, '筋力', state.strength),
 					A2($author$project$Main$intRow, '総ブロック', block),
 					A2($author$project$Main$intRow, '枚数', cardCount),
 					A2($author$project$Main$intRow, '総マナ消費', manaConsumeSum),
@@ -11475,11 +11694,6 @@ var $author$project$Main$UpgradeCard = F2(
 		return {$: 'UpgradeCard', a: a, b: b};
 	});
 var $elm$core$String$endsWith = _String_endsWith;
-var $author$project$Utils$prop1 = F2(
-	function (key, arg) {
-		return A2($rtfeldman$elm_css$Css$property, key, arg.value);
-	});
-var $author$project$Utils$gridColumnGap = $author$project$Utils$prop1('grid-column-gap');
 var $author$project$Utils$noHtml = $rtfeldman$elm_css$Html$Styled$text('');
 var $author$project$Card$Ironclad$view = function (card) {
 	return A2(
@@ -11512,9 +11726,10 @@ var $author$project$Main$currentCardList = function (m) {
 							[
 								$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
 								$author$project$Utils$gridTemplateColumns(
-								_List_fromArray(
-									['1fr', '1fr', '1fr', '1fr', '1fr'])),
+								A2($elm$core$List$repeat, 5, '1fr')),
 								$author$project$Utils$gridColumnGap(
+								$rtfeldman$elm_css$Css$px(10)),
+								$author$project$Utils$gridRowGap(
 								$rtfeldman$elm_css$Css$px(10))
 							]))
 					]),
@@ -11618,13 +11833,35 @@ var $author$project$StylesExtra$gapByMargin = function (n) {
 					]))
 			]));
 };
-var $author$project$Main$notes = A2(
-	$rtfeldman$elm_css$Html$Styled$div,
-	_List_Nil,
-	_List_fromArray(
-		[
-			$rtfeldman$elm_css$Html$Styled$text('*1 現状強打自体にも1.5倍がかかっていて大きめに出ています')
-		]));
+var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
+var $author$project$Main$notes = function () {
+	var lines = _List_fromArray(
+		['*1 現状強打自体にも1.5倍がかかっていて大きめに出ています', '本家17式と同様に1周目で大暴れできるデッキを作ることに着目しており、廃棄は考慮していません', '筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定', 'ヘモキネシスなどのHP減少はブロックの減少として表現しています']);
+	return A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_Nil,
+		A2(
+			$elm$core$List$cons,
+			A2(
+				$rtfeldman$elm_css$Html$Styled$h2,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('以下注意書き')
+					])),
+			A2(
+				$elm$core$List$map,
+				function (line) {
+					return A2(
+						$rtfeldman$elm_css$Html$Styled$div,
+						_List_Nil,
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text(line)
+							]));
+				},
+				lines)));
+}();
 var $author$project$Main$RevertChange = {$: 'RevertChange'};
 var $author$project$History$length = function (_v0) {
 	var his = _v0.b;
@@ -11672,7 +11909,8 @@ var $author$project$Main$view = function (m) {
 				]),
 			_List_fromArray(
 				[
-					$author$project$Main$calcResut(m),
+					$author$project$Main$calcResult(
+					$author$project$History$newest(m.history)),
 					$author$project$Main$addCardForm(m),
 					$author$project$Main$removeCardForm(m),
 					$author$project$Main$currentCardList(m),

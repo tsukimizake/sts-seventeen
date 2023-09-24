@@ -49,6 +49,21 @@ s_name value__ record__ =
     { record__ | name = value__ }
 
 
+s_normal : a -> { b | normal : a } -> { b | normal : a }
+s_normal value__ record__ =
+    { record__ | normal = value__ }
+
+
+s_plus : a -> { b | plus : a } -> { b | plus : a }
+s_plus value__ record__ =
+    { record__ | plus = value__ }
+
+
+s_strength : a -> { b | strength : a } -> { b | strength : a }
+s_strength value__ record__ =
+    { record__ | strength = value__ }
+
+
 s_subscriptions : a -> { b | subscriptions : a } -> { b | subscriptions : a }
 s_subscriptions value__ record__ =
     { record__ | subscriptions = value__ }

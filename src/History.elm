@@ -25,6 +25,11 @@ pop ( hd, his ) =
             ( h, t )
 
 
+update : (a -> a) -> History a -> History a
+update f ( hd, his ) =
+    ( f hd, hd :: his )
+
+
 newest : History a -> a
 newest ( hd, _ ) =
     hd
