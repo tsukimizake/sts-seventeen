@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695562140873"
+    "1695563068001"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11772,7 +11772,7 @@ var $author$project$Main$calcResult = function (_v0) {
 				cards)));
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var blockManaConsumeSum = function (x) {
-		return x + (manaGainSum / 2);
+		return x + manaGainSum;
 	}(
 		$elm$core$List$sum(
 			A2(
@@ -11801,7 +11801,7 @@ var $author$project$Main$calcResult = function (_v0) {
 	var blockPerLoop = perLoop(block);
 	var blockPerLoopMana = A2(perLoopMana, blockManaConsumeSum, blockPerLoop);
 	var atkManaConsumeSum = function (x) {
-		return x + (manaGainSum / 2);
+		return x + manaGainSum;
 	}(
 		$elm$core$List$sum(
 			A2(
@@ -12002,7 +12002,7 @@ var $author$project$StylesExtra$gapByMargin = function (n) {
 var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $author$project$Main$notes = function () {
 	var lines = _List_fromArray(
-		['*1 現状強打自体にも1.5倍がかかっていて大きめに出ています', '本家17式と同様に1周目で大暴れできるデッキを作ることに着目しており、廃棄は考慮していません', '筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定', 'ヘモキネシスなどのHP減少はブロックの減少として表現しています']);
+		['*1 現状強打自体にも1.5倍がかかっていて大きめに出ています', '本家17式と同様に1周目で大暴れできるデッキを作ることを目的としており、廃棄は考慮していません', '筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定', 'ヘモキネシスなどのHP減少はブロックの減少として表現しています', '1ターンの間には全力防御か全力攻撃のどちらかするだけのマナがあれば十分だろうという仮定を置いて、マナの消費はアタックとスキルで別、ただしマナ回復するカードの回復分は両方に足しています (どうするのが近似モデルとして良いのかよくわからない)']);
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
@@ -12023,7 +12023,7 @@ var $author$project$Main$notes = function () {
 						_List_Nil,
 						_List_fromArray(
 							[
-								$rtfeldman$elm_css$Html$Styled$text(line)
+								$rtfeldman$elm_css$Html$Styled$text('・' + line)
 							]));
 				},
 				lines)));

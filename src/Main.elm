@@ -112,14 +112,15 @@ notes =
     let
         lines =
             [ "*1 現状強打自体にも1.5倍がかかっていて大きめに出ています"
-            , "本家17式と同様に1周目で大暴れできるデッキを作ることに着目しており、廃棄は考慮していません"
+            , "本家17式と同様に1周目で大暴れできるデッキを作ることを目的としており、廃棄は考慮していません"
             , "筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定"
             , "ヘモキネシスなどのHP減少はブロックの減少として表現しています"
+            , "1ターンの間には全力防御か全力攻撃のどちらかするだけのマナがあれば十分だろうという仮定を置いて、マナの消費はアタックとスキルで別、ただしマナ回復するカードの回復分は両方に足しています (どうするのが近似モデルとして良いのかよくわからない)"
             ]
     in
     div [] <|
         h2 [] [ text "以下注意書き" ]
-            :: List.map (\line -> div [] [ text line ]) lines
+            :: List.map (\line -> div [] [ text <| "・" ++ line ]) lines
 
 
 currentCardList : Model -> Html Msg
@@ -236,7 +237,7 @@ calcResult { cards, manaPerTurn, strength } =
                 |> List.filter (\c -> c.attackTimes /= 0)
                 |> List.map .mana
                 |> List.sum
-                |> (\x -> toFloat x + (manaGainSum / 2))
+                |> (\x -> toFloat x + manaGainSum)
 
         blockManaConsumeSum =
             cards
@@ -244,7 +245,7 @@ calcResult { cards, manaPerTurn, strength } =
                 |> List.filter (\c -> c.attackTimes == 0)
                 |> List.map .mana
                 |> List.sum
-                |> (\x -> toFloat x + (manaGainSum / 2))
+                |> (\x -> toFloat x + manaGainSum)
 
         dmgPerLoopMana =
             perLoopMana atkManaConsumeSum dmgPerLoop
