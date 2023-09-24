@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695524637269"
+    "1695525414842"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11355,7 +11355,7 @@ var $author$project$Main$calcResut = function (m) {
 				return $.attack;
 			},
 			currentCards));
-	var manaSum = $elm$core$List$sum(
+	var manaConsumeSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
@@ -11376,8 +11376,8 @@ var $author$project$Main$calcResut = function (m) {
 	};
 	var dmgPerLoop = perLoop(damage);
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
-	var perLoopMana = function (vPerLoop) {
-		return A2($elm$core$Basics$min, vPerLoop, vPerLoop * ((3 * loopTurn) / manaSum));
+	var perLoopMana = function (valPerLoop) {
+		return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((3 * loopTurn) / manaConsumeSum));
 	};
 	var dmgPerLoopMana = perLoopMana(dmgPerLoop);
 	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
@@ -11409,10 +11409,10 @@ var $author$project$Main$calcResut = function (m) {
 					A2($author$project$Main$intRow, '総ダメージ', damage),
 					A2($author$project$Main$intRow, '総ブロック', block),
 					A2($author$project$Main$intRow, '枚数', cardCount),
-					A2($author$project$Main$intRow, '総マナ消費', manaSum),
+					A2($author$project$Main$intRow, '総マナ消費', manaConsumeSum),
 					A2($author$project$Main$floatRow, '一周ターン数', loopTurn),
 					A3($author$project$Main$floatRowWithMana, 'ダメージ/ターン数', dmgPerLoop, dmgPerLoopMana),
-					A3($author$project$Main$floatRowWithMana, '脆弱考慮: ダメージ/ターン数', dmgPerLoopVul, dmgPerLoopVulMana),
+					A3($author$project$Main$floatRowWithMana, '脆弱考慮: ダメージ/ターン数 *1', dmgPerLoopVul, dmgPerLoopVulMana),
 					A3($author$project$Main$floatRowWithMana, 'ブロック/ターン数', blockPerLoop, blockPerLoopMana)
 				])));
 };
@@ -11565,6 +11565,13 @@ var $author$project$StylesExtra$gapByMargin = function (n) {
 					]))
 			]));
 };
+var $author$project$Main$notes = A2(
+	$rtfeldman$elm_css$Html$Styled$div,
+	_List_Nil,
+	_List_fromArray(
+		[
+			$rtfeldman$elm_css$Html$Styled$text('*1 現状強打自体にも1.5倍がかかっていて大きめに出ています')
+		]));
 var $author$project$Main$RevertCard = {$: 'RevertCard'};
 var $author$project$History$length = $elm$core$List$length;
 var $author$project$Main$removeCardForm = function (m) {
@@ -11612,7 +11619,8 @@ var $author$project$Main$view = function (m) {
 					$author$project$Main$calcResut(m),
 					$author$project$Main$addCardForm(m),
 					$author$project$Main$removeCardForm(m),
-					$author$project$Main$currentCardList(m)
+					$author$project$Main$currentCardList(m),
+					$author$project$Main$notes
 				]))
 		]);
 };

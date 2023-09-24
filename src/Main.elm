@@ -76,8 +76,14 @@ view m =
         , addCardForm m
         , removeCardForm m
         , currentCardList m
+        , notes
         ]
     ]
+
+
+notes : Html msg
+notes =
+    div [] [ text "*1 現状強打自体にも1.5倍がかかっていて大きめに出ています" ]
 
 
 currentCardList : Model -> Html Msg
@@ -162,9 +168,9 @@ calcResut m =
         perLoop n =
             toFloat n / loopTurn
 
-        perLoopMana vPerLoop =
+        perLoopMana valPerLoop =
             -- TODO manaperturn
-            min vPerLoop (vPerLoop * (3 * loopTurn / toFloat manaSum))
+            min valPerLoop (valPerLoop * (3 * loopTurn / toFloat manaConsumeSum))
 
         dmgPerLoop =
             perLoop damage
@@ -178,7 +184,7 @@ calcResut m =
         dmgPerLoopVulMana =
             perLoopMana dmgPerLoopVul
 
-        manaSum =
+        manaConsumeSum =
             currentCards |> List.map .mana |> List.sum
 
         dmgPerLoopMana =
@@ -195,10 +201,10 @@ calcResut m =
             [ intRow "総ダメージ" damage
             , intRow "総ブロック" block
             , intRow "枚数" cardCount
-            , intRow "総マナ消費" manaSum
+            , intRow "総マナ消費" manaConsumeSum
             , floatRow "一周ターン数" loopTurn
             , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
-            , floatRowWithMana "脆弱考慮: ダメージ/ターン数" dmgPerLoopVul dmgPerLoopVulMana
+            , floatRowWithMana "脆弱考慮: ダメージ/ターン数 *1" dmgPerLoopVul dmgPerLoopVulMana
             , floatRowWithMana "ブロック/ターン数" blockPerLoop blockPerLoopMana
             ]
 
