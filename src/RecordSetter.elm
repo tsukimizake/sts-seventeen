@@ -9,6 +9,16 @@ s_attack value__ record__ =
     { record__ | attack = value__ }
 
 
+s_attackTimes : a -> { b | attackTimes : a } -> { b | attackTimes : a }
+s_attackTimes value__ record__ =
+    { record__ | attackTimes = value__ }
+
+
+s_block : a -> { b | block : a } -> { b | block : a }
+s_block value__ record__ =
+    { record__ | block = value__ }
+
+
 s_body : a -> { b | body : a } -> { b | body : a }
 s_body value__ record__ =
     { record__ | body = value__ }
@@ -24,11 +34,6 @@ s_draw value__ record__ =
     { record__ | draw = value__ }
 
 
-s_guard : a -> { b | guard : a } -> { b | guard : a }
-s_guard value__ record__ =
-    { record__ | guard = value__ }
-
-
 s_history : a -> { b | history : a } -> { b | history : a }
 s_history value__ record__ =
     { record__ | history = value__ }
@@ -42,6 +47,11 @@ s_init value__ record__ =
 s_mana : a -> { b | mana : a } -> { b | mana : a }
 s_mana value__ record__ =
     { record__ | mana = value__ }
+
+
+s_manaPerTurn : a -> { b | manaPerTurn : a } -> { b | manaPerTurn : a }
+s_manaPerTurn value__ record__ =
+    { record__ | manaPerTurn = value__ }
 
 
 s_name : a -> { b | name : a } -> { b | name : a }

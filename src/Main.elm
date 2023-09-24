@@ -20,7 +20,7 @@ type alias Model =
 
 type alias State =
     { cards : List Card
-    , mana : Int
+    , manaPerTurn : Float
     , strength : Float
     }
 
@@ -30,7 +30,7 @@ initialModel =
     { history =
         History.init <|
             { cards = initialCards
-            , mana = 3
+            , manaPerTurn = 3
             , strength = 0
             }
     }
@@ -46,6 +46,7 @@ type Msg
     | RemoveCard Int
     | UpgradeCard Int Card
     | RevertChange
+    | UpdateMana (Maybe Float)
     | UpdateStrength (Maybe Float)
 
 
@@ -70,6 +71,11 @@ update msg model =
         RevertChange ->
             model
                 |> s_history (History.pop model.history)
+                |> noCmd
+
+        UpdateMana val ->
+            model
+                |> s_history (History.update (\state -> { state | manaPerTurn = val |> Maybe.withDefault 0 }) model.history)
                 |> noCmd
 
         UpdateStrength val ->
@@ -186,40 +192,34 @@ removeCardForm m =
 
 
 calcResult : State -> Html Msg
-calcResult state =
+calcResult { cards, manaPerTurn, strength } =
     let
-        currentCards =
-            state.cards
-
         damage =
-            currentCards |> List.map .attack |> List.sum
+            cards |> List.map (\card -> (toFloat card.attack + strength) * toFloat card.attackTimes) |> List.sum
 
         block =
-            currentCards |> List.map .guard |> List.sum
+            cards |> List.map .block |> List.sum |> toFloat
 
         cardCount =
-            currentCards |> List.length
+            cards |> List.length
 
         drawSum =
-            currentCards |> List.map .draw |> List.sum
+            cards |> List.map .draw |> List.sum
 
         loopTurn =
             toFloat (cardCount - drawSum) / toFloat 5
 
         perLoop n =
-            toFloat n / loopTurn
-
-        manaPerTurn =
-            state.mana
+            n / loopTurn
 
         perLoopMana valPerLoop =
-            min valPerLoop (valPerLoop * ((toFloat manaPerTurn * loopTurn) / toFloat manaConsumeSum))
+            min valPerLoop (valPerLoop * ((manaPerTurn * loopTurn) / toFloat manaConsumeSum))
 
         dmgPerLoop =
             perLoop damage
 
         vulTurn =
-            currentCards |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
+            cards |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
 
         dmgPerLoopVul =
             dmgPerLoop + (vulTurn / loopTurn) * dmgPerLoop * 0.5
@@ -228,7 +228,7 @@ calcResult state =
             perLoopMana dmgPerLoopVul
 
         manaConsumeSum =
-            currentCards |> List.map .mana |> List.sum
+            cards |> List.map .mana |> List.sum
 
         dmgPerLoopMana =
             perLoopMana dmgPerLoop
@@ -241,9 +241,10 @@ calcResult state =
     in
     div [ css [ display grid, gridTemplateColumns [ "auto", "auto", "auto" ] ] ] <|
         List.concat
-            [ intRow "総ダメージ" damage
-            , floatField UpdateStrength "筋力" state.strength
-            , intRow "総ブロック" block
+            [ floatField UpdateMana "マナ/ターン" manaPerTurn
+            , floatField UpdateStrength "筋力(攻撃回数を考慮します)" strength
+            , floatRow "総ダメージ" damage
+            , floatRow "総ブロック" block
             , intRow "枚数" cardCount
             , intRow "総マナ消費" manaConsumeSum
             , intRow "総ドロー" drawSum
@@ -258,6 +259,7 @@ floatField : (Maybe Float -> Msg) -> String -> Float -> List (Html Msg)
 floatField msg label val =
     [ div [] [ text label ]
     , input [ type_ "number", value <| String.fromFloat val, onInput (msg << String.toFloat) ] []
+    , div [] []
     ]
 
 

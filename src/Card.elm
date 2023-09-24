@@ -9,7 +9,7 @@ type alias CardDef =
 
 type alias Card =
     { name : String
-    , guard : Int
+    , block : Int
     , attack : Int
     , attackTimes : Int
     , mana : Int
@@ -22,7 +22,7 @@ type alias Card =
 default : Card
 default =
     { name = ""
-    , guard = 0
+    , block = 0
     , attack = 0
     , attackTimes = 1
     , mana = 0

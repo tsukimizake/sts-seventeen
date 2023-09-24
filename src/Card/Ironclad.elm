@@ -34,9 +34,9 @@ guard : CardDef
 guard =
     let
         n =
-            { default | name = "防御", guard = 5, mana = 1 }
+            { default | name = "防御", block = 5, mana = 1, attackTimes = 0 }
     in
-    mkCardDef n (s_guard 8)
+    mkCardDef n (s_block 8)
 
 
 bash : CardDef
@@ -79,9 +79,9 @@ trueGrit : CardDef
 trueGrit =
     let
         n =
-            { default | name = "不屈の闘志", guard = 7, mana = 1 }
+            { default | name = "不屈の闘志", block = 7, mana = 1, attackTimes = 0 }
     in
-    mkCardDef n (s_guard 9)
+    mkCardDef n (s_block 9)
 
 
 
@@ -98,9 +98,9 @@ shrugItOff : CardDef
 shrugItOff =
     let
         n =
-            { default | name = "受け流し", guard = 8, mana = 1, draw = 1 }
+            { default | name = "受け流し", block = 8, mana = 1, draw = 1, attackTimes = 0 }
     in
-    mkCardDef n (s_guard 11)
+    mkCardDef n (s_block 11)
 
 
 ranpage : CardDef
@@ -134,16 +134,16 @@ ghostArmor : CardDef
 ghostArmor =
     let
         n =
-            { default | name = "ゴーストアーマー", guard = 10, mana = 1 }
+            { default | name = "ゴーストアーマー", block = 10, mana = 1, attackTimes = 0 }
     in
-    mkCardDef n (s_guard 13)
+    mkCardDef n (s_block 13)
 
 
 hemokinesis : CardDef
 hemokinesis =
     let
         n =
-            { default | name = "ヘモキネシス", attack = 15, mana = 1, guard = -2 }
+            { default | name = "ヘモキネシス", attack = 15, mana = 1, block = -2 }
     in
     mkCardDef n (s_attack 20)
 
@@ -157,9 +157,27 @@ twinStrike =
     mkCardDef n (s_attack 7)
 
 
+pommelStrike : CardDef
+pommelStrike =
+    let
+        n =
+            { default | name = "ポンメルストライク", attack = 9, draw = 1, mana = 1 }
+    in
+    mkCardDef n (s_attack 10 >> s_draw 2)
+
+
+offering : CardDef
+offering =
+    let
+        n =
+            { default | name = "供物", mana = -2, draw = 3, block = -6 }
+    in
+    mkCardDef n (s_draw 5)
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering ]
 
 
 possibleCards : List Card

@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695544751329"
+    "1695547365557"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8413,7 +8413,7 @@ var $elm$core$Basics$composeR = F3(
 		return g(
 			f(x));
 	});
-var $author$project$Card$default = {attack: 0, attackTimes: 1, draw: 0, guard: 0, mana: 0, name: '', strength: 0, vulnerable: 0};
+var $author$project$Card$default = {attack: 0, attackTimes: 1, block: 0, draw: 0, mana: 0, name: '', strength: 0, vulnerable: 0};
 var $author$project$Card$CardDef = F2(
 	function (normal, plus) {
 		return {normal: normal, plus: plus};
@@ -8456,20 +8456,20 @@ var $author$project$Card$Ironclad$bash = function () {
 			$author$project$RecordSetter$s_attack(10),
 			$author$project$RecordSetter$s_vulnerable(3)));
 }();
-var $author$project$RecordSetter$s_guard = F2(
+var $author$project$RecordSetter$s_block = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{guard: value__});
+			{block: value__});
 	});
 var $author$project$Card$Ironclad$guard = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{guard: 5, mana: 1, name: '防御'});
+		{attackTimes: 0, block: 5, mana: 1, name: '防御'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		$author$project$RecordSetter$s_guard(8));
+		$author$project$RecordSetter$s_block(8));
 }();
 var $elm$core$List$repeatHelp = F3(
 	function (result, n, value) {
@@ -8509,7 +8509,7 @@ var $author$project$Main$initialCards = _Utils_ap(
 			[$author$project$Card$Ironclad$bash.normal])));
 var $author$project$Main$initialModel = {
 	history: $author$project$History$init(
-		{cards: $author$project$Main$initialCards, mana: 3, strength: 0})
+		{cards: $author$project$Main$initialCards, manaPerTurn: 3, strength: 0})
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -9729,11 +9729,11 @@ var $author$project$Card$Ironclad$feed = function () {
 var $author$project$Card$Ironclad$ghostArmor = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{guard: 10, mana: 1, name: 'ゴーストアーマー'});
+		{attackTimes: 0, block: 10, mana: 1, name: 'ゴーストアーマー'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		$author$project$RecordSetter$s_guard(13));
+		$author$project$RecordSetter$s_block(13));
 }();
 var $author$project$Card$Ironclad$headButt = function () {
 	var n = _Utils_update(
@@ -9747,11 +9747,38 @@ var $author$project$Card$Ironclad$headButt = function () {
 var $author$project$Card$Ironclad$hemokinesis = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{attack: 15, guard: -2, mana: 1, name: 'ヘモキネシス'});
+		{attack: 15, block: -2, mana: 1, name: 'ヘモキネシス'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
 		$author$project$RecordSetter$s_attack(20));
+}();
+var $author$project$RecordSetter$s_draw = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{draw: value__});
+	});
+var $author$project$Card$Ironclad$offering = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{block: -6, draw: 3, mana: -2, name: '供物'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_draw(5));
+}();
+var $author$project$Card$Ironclad$pommelStrike = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 9, draw: 1, mana: 1, name: 'ポンメルストライク'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		A2(
+			$elm$core$Basics$composeR,
+			$author$project$RecordSetter$s_attack(10),
+			$author$project$RecordSetter$s_draw(2)));
 }();
 var $author$project$Card$Ironclad$ranpage = function () {
 	var n = _Utils_update(
@@ -9762,11 +9789,11 @@ var $author$project$Card$Ironclad$ranpage = function () {
 var $author$project$Card$Ironclad$shrugItOff = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{draw: 1, guard: 8, mana: 1, name: '受け流し'});
+		{attackTimes: 0, block: 8, draw: 1, mana: 1, name: '受け流し'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		$author$project$RecordSetter$s_guard(11));
+		$author$project$RecordSetter$s_block(11));
 }();
 var $author$project$Card$Ironclad$thunderClap = function () {
 	var n = _Utils_update(
@@ -9780,11 +9807,11 @@ var $author$project$Card$Ironclad$thunderClap = function () {
 var $author$project$Card$Ironclad$trueGrit = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{guard: 7, mana: 1, name: '不屈の闘志'});
+		{attackTimes: 0, block: 7, mana: 1, name: '不屈の闘志'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		$author$project$RecordSetter$s_guard(9));
+		$author$project$RecordSetter$s_block(9));
 }();
 var $author$project$Card$Ironclad$twinStrike = function () {
 	var n = _Utils_update(
@@ -9802,7 +9829,7 @@ var $author$project$Card$Ironclad$undefinedCard = A2(
 		{name: '未実装カード'}),
 	$elm$core$Basics$identity);
 var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
-	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike]);
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering]);
 var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
 	_List_fromArray(
 		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
@@ -9901,6 +9928,22 @@ var $author$project$Main$update = F2(
 					A2(
 						$author$project$RecordSetter$s_history,
 						$author$project$History$pop(model.history),
+						model));
+			case 'UpdateMana':
+				var val = msg.a;
+				return $author$project$Utils$noCmd(
+					A2(
+						$author$project$RecordSetter$s_history,
+						A2(
+							$author$project$History$update,
+							function (state) {
+								return _Utils_update(
+									state,
+									{
+										manaPerTurn: A2($elm$core$Maybe$withDefault, 0, val)
+									});
+							},
+							model.history),
 						model));
 			default:
 				var val = msg.a;
@@ -11452,6 +11495,9 @@ var $author$project$Main$addCardForm = function (_v0) {
 					$author$project$Card$Ironclad$possibleCards))
 			]));
 };
+var $author$project$Main$UpdateMana = function (a) {
+	return {$: 'UpdateMana', a: a};
+};
 var $author$project$Main$UpdateStrength = function (a) {
 	return {$: 'UpdateStrength', a: a};
 };
@@ -11528,7 +11574,8 @@ var $author$project$Main$floatField = F3(
 						$rtfeldman$elm_css$Html$Styled$Events$onInput(
 						A2($elm$core$Basics$composeL, msg, $elm$core$String$toFloat))
 					]),
-				_List_Nil)
+				_List_Nil),
+				A2($rtfeldman$elm_css$Html$Styled$div, _List_Nil, _List_Nil)
 			]);
 	});
 var $author$project$Main$row = F3(
@@ -11603,31 +11650,32 @@ var $elm$core$Basics$min = F2(
 var $elm$core$List$sum = function (numbers) {
 	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
-var $author$project$Main$calcResult = function (state) {
-	var manaPerTurn = state.mana;
-	var currentCards = state.cards;
-	var damage = $elm$core$List$sum(
-		A2(
-			$elm$core$List$map,
-			function ($) {
-				return $.attack;
-			},
-			currentCards));
-	var drawSum = $elm$core$List$sum(
-		A2(
-			$elm$core$List$map,
-			function ($) {
-				return $.draw;
-			},
-			currentCards));
+var $author$project$Main$calcResult = function (_v0) {
+	var cards = _v0.cards;
+	var manaPerTurn = _v0.manaPerTurn;
+	var strength = _v0.strength;
 	var manaConsumeSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
 				return $.mana;
 			},
-			currentCards));
-	var cardCount = $elm$core$List$length(currentCards);
+			cards));
+	var drawSum = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.draw;
+			},
+			cards));
+	var damage = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function (card) {
+				return (card.attack + strength) * card.attackTimes;
+			},
+			cards));
+	var cardCount = $elm$core$List$length(cards);
 	var loopTurn = (cardCount - drawSum) / 5;
 	var perLoop = function (n) {
 		return n / loopTurn;
@@ -11646,16 +11694,16 @@ var $author$project$Main$calcResult = function (state) {
 				function ($) {
 					return $.vulnerable;
 				},
-				currentCards)));
+				cards)));
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
 	var block = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
-				return $.guard;
+				return $.block;
 			},
-			currentCards));
+			cards));
 	var blockPerLoop = perLoop(block);
 	var blockPerLoopMana = perLoopMana(blockPerLoop);
 	return A2(
@@ -11674,9 +11722,10 @@ var $author$project$Main$calcResult = function (state) {
 		$elm$core$List$concat(
 			_List_fromArray(
 				[
-					A2($author$project$Main$intRow, '総ダメージ', damage),
-					A3($author$project$Main$floatField, $author$project$Main$UpdateStrength, '筋力', state.strength),
-					A2($author$project$Main$intRow, '総ブロック', block),
+					A3($author$project$Main$floatField, $author$project$Main$UpdateMana, 'マナ/ターン', manaPerTurn),
+					A3($author$project$Main$floatField, $author$project$Main$UpdateStrength, '筋力(攻撃回数を考慮します)', strength),
+					A2($author$project$Main$floatRow, '総ダメージ', damage),
+					A2($author$project$Main$floatRow, '総ブロック', block),
 					A2($author$project$Main$intRow, '枚数', cardCount),
 					A2($author$project$Main$intRow, '総マナ消費', manaConsumeSum),
 					A2($author$project$Main$intRow, '総ドロー', drawSum),
