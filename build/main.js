@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695561243291"
+    "1695561402468"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -11714,13 +11714,6 @@ var $author$project$Main$calcResult = function (_v0) {
 	var cards = _v0.cards;
 	var manaPerTurn = _v0.manaPerTurn;
 	var strength = _v0.strength;
-	var manaConsumeSum = $elm$core$List$sum(
-		A2(
-			$elm$core$List$map,
-			function ($) {
-				return $.mana;
-			},
-			cards));
 	var drawSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11741,10 +11734,10 @@ var $author$project$Main$calcResult = function (_v0) {
 		return n / loopTurn;
 	};
 	var dmgPerLoop = perLoop(damage);
-	var perLoopMana = function (valPerLoop) {
-		return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((manaPerTurn * loopTurn) / manaConsumeSum));
-	};
-	var dmgPerLoopMana = perLoopMana(dmgPerLoop);
+	var perLoopMana = F2(
+		function (manaConsumeSum, valPerLoop) {
+			return A2($elm$core$Basics$min, valPerLoop, valPerLoop * ((manaPerTurn * loopTurn) / manaConsumeSum));
+		});
 	var vulTurn = A2(
 		$elm$core$Basics$max,
 		loopTurn,
@@ -11756,7 +11749,18 @@ var $author$project$Main$calcResult = function (_v0) {
 				},
 				cards)));
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
-	var dmgPerLoopVulMana = perLoopMana(dmgPerLoopVul);
+	var blockManaConsumeSum = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.mana;
+			},
+			A2(
+				$elm$core$List$filter,
+				function (c) {
+					return !c.attackTimes;
+				},
+				cards)));
 	var block = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
@@ -11765,7 +11769,21 @@ var $author$project$Main$calcResult = function (_v0) {
 			},
 			cards));
 	var blockPerLoop = perLoop(block);
-	var blockPerLoopMana = perLoopMana(blockPerLoop);
+	var blockPerLoopMana = A2(perLoopMana, blockManaConsumeSum, blockPerLoop);
+	var atkManaConsumeSum = $elm$core$List$sum(
+		A2(
+			$elm$core$List$map,
+			function ($) {
+				return $.mana;
+			},
+			A2(
+				$elm$core$List$filter,
+				function (c) {
+					return !(!c.attackTimes);
+				},
+				cards)));
+	var dmgPerLoopMana = A2(perLoopMana, atkManaConsumeSum, dmgPerLoop);
+	var dmgPerLoopVulMana = A2(perLoopMana, atkManaConsumeSum, dmgPerLoopVul);
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -11787,7 +11805,8 @@ var $author$project$Main$calcResult = function (_v0) {
 					A2($author$project$Main$floatRow, '総ダメージ', damage),
 					A2($author$project$Main$floatRow, '総ブロック', block),
 					A2($author$project$Main$intRow, '枚数', cardCount),
-					A2($author$project$Main$intRow, '総マナ消費', manaConsumeSum),
+					A2($author$project$Main$intRow, 'アタック総マナ消費', atkManaConsumeSum),
+					A2($author$project$Main$intRow, 'スキル総マナ消費', blockManaConsumeSum),
 					A2($author$project$Main$intRow, '総ドロー', drawSum),
 					A2($author$project$Main$floatRow, '一周ターン数', loopTurn),
 					A3($author$project$Main$floatRowWithMana, 'ダメージ/ターン数', dmgPerLoop, dmgPerLoopMana),

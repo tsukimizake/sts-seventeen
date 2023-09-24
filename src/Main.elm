@@ -212,7 +212,7 @@ calcResult { cards, manaPerTurn, strength } =
         perLoop n =
             n / loopTurn
 
-        perLoopMana valPerLoop =
+        perLoopMana manaConsumeSum valPerLoop =
             min valPerLoop (valPerLoop * ((manaPerTurn * loopTurn) / toFloat manaConsumeSum))
 
         dmgPerLoop =
@@ -225,19 +225,22 @@ calcResult { cards, manaPerTurn, strength } =
             dmgPerLoop + (vulTurn / loopTurn) * dmgPerLoop * 0.5
 
         dmgPerLoopVulMana =
-            perLoopMana dmgPerLoopVul
+            perLoopMana atkManaConsumeSum dmgPerLoopVul
 
-        manaConsumeSum =
-            cards |> List.map .mana |> List.sum
+        atkManaConsumeSum =
+            cards |> List.filter (\c -> c.attackTimes /= 0) |> List.map .mana |> List.sum
+
+        blockManaConsumeSum =
+            cards |> List.filter (\c -> c.attackTimes == 0) |> List.map .mana |> List.sum
 
         dmgPerLoopMana =
-            perLoopMana dmgPerLoop
+            perLoopMana atkManaConsumeSum dmgPerLoop
 
         blockPerLoop =
             perLoop block
 
         blockPerLoopMana =
-            perLoopMana blockPerLoop
+            perLoopMana blockManaConsumeSum blockPerLoop
     in
     div [ css [ display grid, gridTemplateColumns [ "auto", "auto", "auto" ] ] ] <|
         List.concat
@@ -246,7 +249,8 @@ calcResult { cards, manaPerTurn, strength } =
             , floatRow "総ダメージ" damage
             , floatRow "総ブロック" block
             , intRow "枚数" cardCount
-            , intRow "総マナ消費" manaConsumeSum
+            , intRow "アタック総マナ消費" atkManaConsumeSum
+            , intRow "スキル総マナ消費" blockManaConsumeSum
             , intRow "総ドロー" drawSum
             , floatRow "一周ターン数" loopTurn
             , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
