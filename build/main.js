@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695534216645"
+    "1695534281594"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -8408,6 +8408,11 @@ var $elm$browser$Browser$document = _Browser_document;
 var $author$project$History$init = function (a) {
 	return _Utils_Tuple2(a, _List_Nil);
 };
+var $elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
 var $author$project$Card$default = {attack: 0, draw: 0, guard: 0, mana: 0, name: '', vulnerable: 0};
 var $author$project$Card$CardDef = F2(
 	function (normal, plus) {
@@ -8433,6 +8438,12 @@ var $author$project$RecordSetter$s_attack = F2(
 			record__,
 			{attack: value__});
 	});
+var $author$project$RecordSetter$s_vulnerable = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{vulnerable: value__});
+	});
 var $author$project$Card$Ironclad$bash = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -8440,7 +8451,10 @@ var $author$project$Card$Ironclad$bash = function () {
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
-		$author$project$RecordSetter$s_attack(11));
+		A2(
+			$elm$core$Basics$composeR,
+			$author$project$RecordSetter$s_attack(10),
+			$author$project$RecordSetter$s_vulnerable(3)));
 }();
 var $author$project$RecordSetter$s_guard = F2(
 	function (value__, record__) {

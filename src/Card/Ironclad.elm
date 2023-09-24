@@ -40,7 +40,7 @@ bash =
         n =
             { default | name = "強打", attack = 8, mana = 2, vulnerable = 2 }
     in
-    mkCardDef n (s_attack 11)
+    mkCardDef n (s_attack 10 >> s_vulnerable 3)
 
 
 anger : CardDef
