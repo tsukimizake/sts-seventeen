@@ -213,7 +213,7 @@ calcResult { cards, manaPerTurn, strength } =
             n / loopTurn
 
         perLoopMana manaConsumeSum valPerLoop =
-            min valPerLoop (valPerLoop * ((manaPerTurn * loopTurn) / toFloat manaConsumeSum))
+            min valPerLoop (valPerLoop * ((manaPerTurn * loopTurn) / manaConsumeSum))
 
         dmgPerLoop =
             perLoop damage
@@ -227,11 +227,24 @@ calcResult { cards, manaPerTurn, strength } =
         dmgPerLoopVulMana =
             perLoopMana atkManaConsumeSum dmgPerLoopVul
 
+        manaGainSum =
+            cards |> List.filter (\c -> c.mana < 0) |> List.map .mana |> List.sum |> toFloat
+
         atkManaConsumeSum =
-            cards |> List.filter (\c -> c.attackTimes /= 0) |> List.map .mana |> List.sum
+            cards
+                |> List.filter (\c -> c.mana >= 0)
+                |> List.filter (\c -> c.attackTimes /= 0)
+                |> List.map .mana
+                |> List.sum
+                |> (\x -> toFloat x + (manaGainSum / 2))
 
         blockManaConsumeSum =
-            cards |> List.filter (\c -> c.attackTimes == 0) |> List.map .mana |> List.sum
+            cards
+                |> List.filter (\c -> c.mana >= 0)
+                |> List.filter (\c -> c.attackTimes == 0)
+                |> List.map .mana
+                |> List.sum
+                |> (\x -> toFloat x + (manaGainSum / 2))
 
         dmgPerLoopMana =
             perLoopMana atkManaConsumeSum dmgPerLoop
@@ -249,8 +262,8 @@ calcResult { cards, manaPerTurn, strength } =
             , floatRow "総ダメージ" damage
             , floatRow "総ブロック" block
             , intRow "枚数" cardCount
-            , intRow "アタック総マナ消費" atkManaConsumeSum
-            , intRow "スキル総マナ消費" blockManaConsumeSum
+            , floatRow "アタック総マナ消費" atkManaConsumeSum
+            , floatRow "スキル総マナ消費" blockManaConsumeSum
             , intRow "総ドロー" drawSum
             , floatRow "一周ターン数" loopTurn
             , floatRowWithMana "ダメージ/ターン数" dmgPerLoop dmgPerLoopMana
