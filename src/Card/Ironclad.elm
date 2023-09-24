@@ -184,9 +184,55 @@ heavyBlade =
     mkCardDef n (s_attack (14 / 5) >> s_attackTimes 5)
 
 
+flameBarrier : CardDef
+flameBarrier =
+    let
+        n =
+            { default | name = "炎の障壁", block = 12, mana = 2, attackTimes = 0 }
+    in
+    mkCardDef n (s_block 16)
+
+
+warCry : CardDef
+warCry =
+    let
+        n =
+            { default | name = "雄叫び", mana = 0, draw = 1 }
+    in
+    mkCardDef n (s_draw 2)
+
+
+
+-- secondWind : CardDef
+-- secondWind =
+--     let
+--         n =
+--             { default | name = "セカンドウィンド", mana = 1, block = 5 }
+--     in
+--     mkCardDef n (s_block 7)
+
+
+severSoul : CardDef
+severSoul =
+    let
+        n =
+            { default | name = "霊魂切断", attack = 16, mana = 2 }
+    in
+    mkCardDef n (s_attack 22)
+
+
+seeingRed : CardDef
+seeingRed =
+    let
+        n =
+            { default | name = "激昂", mana = -1 }
+    in
+    mkCardDef n (s_mana -2)
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed ]
 
 
 possibleCards : List Card

@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695550751468"
+    "1695561243291"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -9726,6 +9726,15 @@ var $author$project$Card$Ironclad$feed = function () {
 		n,
 		$author$project$RecordSetter$s_attack(12));
 }();
+var $author$project$Card$Ironclad$flameBarrier = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attackTimes: 0, block: 12, mana: 2, name: '炎の障壁'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_block(16));
+}();
 var $author$project$Card$Ironclad$ghostArmor = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -9743,6 +9752,24 @@ var $author$project$Card$Ironclad$headButt = function () {
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
 		$author$project$RecordSetter$s_attack(12));
+}();
+var $author$project$RecordSetter$s_attackTimes = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{attackTimes: value__});
+	});
+var $author$project$Card$Ironclad$heavyBlade = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 14 / 3, attackTimes: 3, mana: 2, name: 'ヘビーブレード'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		A2(
+			$elm$core$Basics$composeR,
+			$author$project$RecordSetter$s_attack(14 / 5),
+			$author$project$RecordSetter$s_attackTimes(5)));
 }();
 var $author$project$Card$Ironclad$hemokinesis = function () {
 	var n = _Utils_update(
@@ -9786,6 +9813,30 @@ var $author$project$Card$Ironclad$ranpage = function () {
 		{attack: 8, mana: 1, name: 'ランページ'});
 	return A2($author$project$Card$Ironclad$mkCardDef, n, $elm$core$Basics$identity);
 }();
+var $author$project$RecordSetter$s_mana = F2(
+	function (value__, record__) {
+		return _Utils_update(
+			record__,
+			{mana: value__});
+	});
+var $author$project$Card$Ironclad$seeingRed = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{mana: -1, name: '激昂'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_mana(-2));
+}();
+var $author$project$Card$Ironclad$severSoul = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 16, mana: 2, name: '霊魂切断'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(22));
+}();
 var $author$project$Card$Ironclad$shrugItOff = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -9828,8 +9879,17 @@ var $author$project$Card$Ironclad$undefinedCard = A2(
 		$author$project$Card$default,
 		{name: '未実装カード'}),
 	$elm$core$Basics$identity);
+var $author$project$Card$Ironclad$warCry = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{draw: 1, mana: 0, name: '雄叫び'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_draw(2));
+}();
 var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
-	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering]);
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed]);
 var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
 	_List_fromArray(
 		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
