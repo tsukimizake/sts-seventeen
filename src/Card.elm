@@ -10,7 +10,7 @@ type alias CardDef =
 type alias Card =
     { name : String
     , block : Int
-    , attack : Int
+    , attack : Float
     , attackTimes : Int
     , mana : Int
     , draw : Int

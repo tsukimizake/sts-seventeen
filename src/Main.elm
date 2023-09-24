@@ -195,7 +195,7 @@ calcResult : State -> Html Msg
 calcResult { cards, manaPerTurn, strength } =
     let
         damage =
-            cards |> List.map (\card -> (toFloat card.attack + strength) * toFloat card.attackTimes) |> List.sum
+            cards |> List.map (\card -> (card.attack + strength) * toFloat card.attackTimes) |> List.sum
 
         block =
             cards |> List.map .block |> List.sum |> toFloat

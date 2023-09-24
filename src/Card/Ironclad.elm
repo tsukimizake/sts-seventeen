@@ -175,6 +175,15 @@ offering =
     mkCardDef n (s_draw 5)
 
 
+heavyBlade : CardDef
+heavyBlade =
+    let
+        n =
+            { default | name = "ヘビーブレード", attack = 14 / 3, attackTimes = 3, mana = 2 }
+    in
+    mkCardDef n (s_attack (14 / 5) >> s_attackTimes 5)
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
     [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering ]
