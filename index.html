@@ -6507,6 +6507,24 @@ var $author$project$Card$Ironclad$anger = function () {
 		n,
 		$author$project$RecordSetter$s_attack(8));
 }();
+var $author$project$Card$Ironclad$buldegeon = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bf: 32, bE: 3, bG: '脳天割り'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(42));
+}();
+var $author$project$Card$Ironclad$carnage = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bf: 20, bE: 2, bG: '大虐殺'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(28));
+}();
 var $author$project$Card$Ironclad$cleave = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -6697,7 +6715,7 @@ var $author$project$Card$Ironclad$warCry = function () {
 		$author$project$RecordSetter$s_draw(2));
 }();
 var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
-	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate]);
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate, $author$project$Card$Ironclad$carnage, $author$project$Card$Ironclad$buldegeon]);
 var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
 	_List_fromArray(
 		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
@@ -8804,7 +8822,7 @@ var $author$project$Main$notes = function () {
 		_List_Nil,
 		_List_fromArray(
 			[
-				$rtfeldman$elm_css$Html$Styled$text('リポジトリはこちら'),
+				$rtfeldman$elm_css$Html$Styled$text('・リポジトリはこちら'),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$a,
 				_List_fromArray(
@@ -8824,7 +8842,7 @@ var $author$project$Main$notes = function () {
 		_List_Nil,
 		_List_fromArray(
 			[
-				$rtfeldman$elm_css$Html$Styled$text('偉大なる本家様はこちら'),
+				$rtfeldman$elm_css$Html$Styled$text('・17式本家様はこちら'),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$a,
 				_List_fromArray(

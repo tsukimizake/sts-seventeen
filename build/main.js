@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695908365162"
+    "1695909719456"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -9708,6 +9708,24 @@ var $author$project$Card$Ironclad$anger = function () {
 		n,
 		$author$project$RecordSetter$s_attack(8));
 }();
+var $author$project$Card$Ironclad$buldegeon = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 32, mana: 3, name: '脳天割り'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(42));
+}();
+var $author$project$Card$Ironclad$carnage = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{attack: 20, mana: 2, name: '大虐殺'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(28));
+}();
 var $author$project$Card$Ironclad$cleave = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
@@ -9898,7 +9916,7 @@ var $author$project$Card$Ironclad$warCry = function () {
 		$author$project$RecordSetter$s_draw(2));
 }();
 var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
-	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate]);
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate, $author$project$Card$Ironclad$carnage, $author$project$Card$Ironclad$buldegeon]);
 var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
 	_List_fromArray(
 		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),

@@ -202,16 +202,6 @@ warCry =
     mkCardDef n (s_draw 2)
 
 
-
--- secondWind : CardDef
--- secondWind =
---     let
---         n =
---             { default | name = "セカンドウィンド", mana = 1, block = 5 }
---     in
---     mkCardDef n (s_block 7)
-
-
 severSoul : CardDef
 severSoul =
     let
@@ -259,7 +249,11 @@ buldegeon =
 
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate, carnage, buldegeon ]
+
+
+
+-- TODO パーフェクトストライク, 旋風人、セカンドウィンド、
 
 
 possibleCards : List Card
