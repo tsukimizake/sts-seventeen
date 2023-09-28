@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695907492811"
+    "1695907733094"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -9831,7 +9831,7 @@ var $author$project$RecordSetter$s_mana = F2(
 var $author$project$Card$Ironclad$seeingRed = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{mana: -1, name: '激昂'});
+		{attackTimes: 0, mana: -1, name: '激昂'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
