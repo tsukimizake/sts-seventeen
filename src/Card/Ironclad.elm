@@ -225,7 +225,7 @@ seeingRed : CardDef
 seeingRed =
     let
         n =
-            { default | name = "激昂", mana = -1 , attackTimes = 0 }
+            { default | name = "激昂", mana = -1, attackTimes = 0 }
     in
     mkCardDef n (s_mana -2)
 
@@ -238,6 +238,7 @@ immolate =
     in
     mkCardDef n (s_attack 28)
 
+
 carnage : CardDef
 carnage =
     let
@@ -246,6 +247,7 @@ carnage =
     in
     mkCardDef n (s_attack 28)
 
+
 buldegeon : CardDef
 buldegeon =
     let
@@ -253,6 +255,7 @@ buldegeon =
             { default | name = "脳天割り", attack = 32, mana = 3 }
     in
     mkCardDef n (s_attack 42)
+
 
 possibleCardDefs : List CardDef
 possibleCardDefs =

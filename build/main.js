@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695907733094"
+    "1695908365162"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -10032,13 +10032,6 @@ var $author$project$Main$update = F2(
 						model));
 		}
 	});
-var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
-	function (a, b, c) {
-		return {$: 'Node', a: a, b: b, c: c};
-	});
-var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
-var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
-var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
 var $author$project$Main$AddCard = function (a) {
 	return {$: 'AddCard', a: a};
 };
@@ -10059,6 +10052,12 @@ var $rtfeldman$elm_css$Css$prop1 = F2(
 	});
 var $rtfeldman$elm_css$Css$borderStyle = $rtfeldman$elm_css$Css$prop1('border-style');
 var $rtfeldman$elm_css$Css$borderWidth = $rtfeldman$elm_css$Css$prop1('border-width');
+var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
+	function (a, b, c) {
+		return {$: 'Node', a: a, b: b, c: c};
+	});
+var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
+var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
 var $rtfeldman$elm_css$Html$Styled$button = $rtfeldman$elm_css$Html$Styled$node('button');
 var $rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	function (a, b, c) {
@@ -12001,13 +12000,49 @@ var $author$project$StylesExtra$gapByMargin = function (n) {
 			]));
 };
 var $rtfeldman$elm_css$Html$Styled$h1 = $rtfeldman$elm_css$Html$Styled$node('h1');
+var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
+var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
 	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
 };
-var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $author$project$Main$notes = function () {
+	var repoLink = A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$text('・リポジトリはこちら'),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$a,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/tsukimizake/sts-seventeen')
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('https://github.com/tsukimizake/sts-seventeen')
+					])),
+				$rtfeldman$elm_css$Html$Styled$text('バグ報告とかほしいカード報告もこちらのissueへ')
+			]));
 	var lines = _List_fromArray(
 		['*1 現状強打自体にも1.5倍がかかっていて大きめに出ています', '本家17式と同様に1周目で大暴れできるデッキを作ることを目的としており、廃棄は考慮していません', '筋力系のカードとパワーに関しては例外処理の遊園地みたいになるので実装しません。ユーザーが各計算ステップに補正値を入力できるようにすることでお茶を濁す予定', 'ヘモキネシスなどのHP減少はブロックの減少として表現しています', '1ターンの間には全力防御か全力攻撃のどちらかするだけのマナがあれば十分だろうという仮定を置いて、マナの消費はアタックとスキルで別、ただしマナ回復するカードの回復分は両方に足しています (どうするのが近似モデルとして良いのかよくわからない。現状の問題点として、例えばポンメルをいくら入れてもマナ考慮ブロックの数値は変わらない)']);
+	var honkesamaLink = A2(
+		$rtfeldman$elm_css$Html$Styled$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				$rtfeldman$elm_css$Html$Styled$text('・17式本家様はこちら'),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$a,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$href('https://www.nicovideo.jp/watch/sm40441713')
+					]),
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('https://www.nicovideo.jp/watch/sm40441713')
+					]))
+			]));
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
@@ -12020,18 +12055,21 @@ var $author$project$Main$notes = function () {
 					[
 						$rtfeldman$elm_css$Html$Styled$text('以下注意書き')
 					])),
-			A2(
-				$elm$core$List$map,
-				function (line) {
-					return A2(
-						$rtfeldman$elm_css$Html$Styled$div,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Html$Styled$text('・' + line)
-							]));
-				},
-				lines)));
+			_Utils_ap(
+				A2(
+					$elm$core$List$map,
+					function (line) {
+						return A2(
+							$rtfeldman$elm_css$Html$Styled$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('・' + line)
+								]));
+					},
+					lines),
+				_List_fromArray(
+					[repoLink, honkesamaLink]))));
 }();
 var $author$project$Main$RevertChange = {$: 'RevertChange'};
 var $author$project$History$length = function (_v0) {
@@ -12092,25 +12130,7 @@ var $author$project$Main$view = function (m) {
 					$author$project$Main$addCardForm(m),
 					$author$project$Main$removeCardForm(m),
 					$author$project$Main$currentCardList(m),
-					$author$project$Main$notes,
-					A2(
-					$rtfeldman$elm_css$Html$Styled$div,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Html$Styled$text('リポジトリはこちら'),
-							A2(
-							$rtfeldman$elm_css$Html$Styled$a,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/tsukimizake/sts-seventeen')
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text('https://github.com/tsukimizake/sts-seventeen')
-								])),
-							$rtfeldman$elm_css$Html$Styled$text('バグ報告とかほしいカード報告もこちらのissueへ')
-						]))
+					$author$project$Main$notes
 				]))
 		]);
 };

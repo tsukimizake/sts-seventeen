@@ -104,11 +104,6 @@ view m =
         , removeCardForm m
         , currentCardList m
         , notes
-        , div []
-            [ text "リポジトリはこちら"
-            , a [ href "https://github.com/tsukimizake/sts-seventeen" ] [ text "https://github.com/tsukimizake/sts-seventeen" ]
-            , text "バグ報告とかほしいカード報告もこちらのissueへ"
-            ]
         ]
     ]
 
@@ -123,10 +118,26 @@ notes =
             , "ヘモキネシスなどのHP減少はブロックの減少として表現しています"
             , "1ターンの間には全力防御か全力攻撃のどちらかするだけのマナがあれば十分だろうという仮定を置いて、マナの消費はアタックとスキルで別、ただしマナ回復するカードの回復分は両方に足しています (どうするのが近似モデルとして良いのかよくわからない。現状の問題点として、例えばポンメルをいくら入れてもマナ考慮ブロックの数値は変わらない)"
             ]
+
+        repoLink =
+            div []
+                [ text "・リポジトリはこちら"
+                , a [ href "https://github.com/tsukimizake/sts-seventeen" ] [ text "https://github.com/tsukimizake/sts-seventeen" ]
+                , text "バグ報告とかほしいカード報告もこちらのissueへ"
+                ]
+
+        honkesamaLink =
+            div []
+                [ text "・17式本家様はこちら"
+                , a [ href "https://www.nicovideo.jp/watch/sm40441713" ]
+                    [ text "https://www.nicovideo.jp/watch/sm40441713"
+                    ]
+                ]
     in
     div [] <|
         h2 [] [ text "以下注意書き" ]
             :: List.map (\line -> div [] [ text <| "・" ++ line ]) lines
+            ++ [ repoLink, honkesamaLink ]
 
 
 currentCardList : Model -> Html Msg
