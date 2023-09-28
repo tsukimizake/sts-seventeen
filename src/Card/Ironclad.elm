@@ -247,13 +247,62 @@ buldegeon =
     mkCardDef n (s_attack 42)
 
 
+wildStrike : CardDef
+wildStrike =
+    let
+        n =
+            { default | name = "乱打", attack = 12, mana = 1, draw = -1 }
+    in
+    mkCardDef n (s_attack 17)
+
+
+bloodLetting : CardDef
+bloodLetting =
+    let
+        n =
+            { default | name = "瀉血", attackTimes = 0, mana = -2 }
+    in
+    mkCardDef n (s_mana -3)
+
+
+burningPact : CardDef
+burningPact =
+    let
+        n =
+            { default | name = "焦熱の契約", mana = 0, draw = 2 }
+    in
+    mkCardDef n (s_draw 3)
+
+
+clothesline : CardDef
+clothesline =
+    let
+        n =
+            { default | name = "ラリアット", attack = 12, weak = 2, mana = 2 }
+    in
+    mkCardDef n (s_attack 14 >> s_weak 3)
+
+
+upperCut : CardDef
+upperCut =
+    let
+        n =
+            { default | name = "アッパーカット", attack = 13, vulnerable = 1, weak = 1, mana = 2 }
+    in
+    mkCardDef n (s_vulnerable 2 >> s_weak 2)
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate, carnage, buldegeon ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate, carnage, buldegeon, wildStrike, bloodLetting, burningPact, clothesline, upperCut ]
 
 
 
--- TODO パーフェクトストライク, 旋風人、セカンドウィンド、
+-- TODO 特殊カードメモ
+-- パーフェクトストライク, 旋風人、セカンドウィンド、武装、ボディスラム、クラッシュ、荒廃、バトルトランス、ドロップキック、塹壕、激怒、鬼火
+-- 無理じゃねなやつ
+-- 血には血を、武装解除、二刀流、内なる刃、燃えさかるブロー、見張り、衝撃波、ダブルタップ、発掘、死神
+-- あと筋力とパワーは無視
 
 
 possibleCards : List Card

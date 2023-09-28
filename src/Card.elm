@@ -15,6 +15,7 @@ type alias Card =
     , mana : Int
     , draw : Int
     , vulnerable : Int
+    , weak : Int
     , strength : Int
     }
 
@@ -28,5 +29,6 @@ default =
     , mana = 0
     , draw = 0
     , vulnerable = 0
+    , weak = 0
     , strength = 0
     }
