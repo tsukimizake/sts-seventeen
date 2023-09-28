@@ -6,7 +6,7 @@ import Card.Ironclad as Card
 import Css exposing (..)
 import History exposing (History)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, type_, value)
+import Html.Styled.Attributes exposing (css, href, type_, value)
 import Html.Styled.Events exposing (..)
 import List.Extra
 import RecordSetter exposing (..)
@@ -98,11 +98,17 @@ pushCardsHistory f m =
 view : Model -> List (Html Msg)
 view m =
     [ div [ css [ gapByMargin 30 ] ]
-        [ calcResult <| History.newest m.history
+        [ h1 [] [ text "17式インスパイアデッキパワー計算機" ]
+        , calcResult <| History.newest m.history
         , addCardForm m
         , removeCardForm m
         , currentCardList m
         , notes
+        , div []
+            [ text "リポジトリはこちら"
+            , a [ href "https://github.com/tsukimizake/sts-seventeen" ] [ text "https://github.com/tsukimizake/sts-seventeen" ]
+            , text "バグ報告とかほしいカード報告もこちらのissueへ"
+            ]
         ]
     ]
 

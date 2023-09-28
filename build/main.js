@@ -608,7 +608,7 @@ ${variant}`;
   var VERSION = "1.2.0-beta.3";
   var TARGET_NAME = "sts";
   var INITIAL_ELM_COMPILED_TIMESTAMP = Number(
-    "1695563365518"
+    "1695907492811"
   );
   var ORIGINAL_COMPILATION_MODE = "standard";
   var ORIGINAL_BROWSER_UI_POSITION = "BottomLeft";
@@ -10032,6 +10032,13 @@ var $author$project$Main$update = F2(
 						model));
 		}
 	});
+var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
+	function (a, b, c) {
+		return {$: 'Node', a: a, b: b, c: c};
+	});
+var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
+var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
+var $rtfeldman$elm_css$Html$Styled$a = $rtfeldman$elm_css$Html$Styled$node('a');
 var $author$project$Main$AddCard = function (a) {
 	return {$: 'AddCard', a: a};
 };
@@ -10052,12 +10059,6 @@ var $rtfeldman$elm_css$Css$prop1 = F2(
 	});
 var $rtfeldman$elm_css$Css$borderStyle = $rtfeldman$elm_css$Css$prop1('border-style');
 var $rtfeldman$elm_css$Css$borderWidth = $rtfeldman$elm_css$Css$prop1('border-width');
-var $rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
-	function (a, b, c) {
-		return {$: 'Node', a: a, b: b, c: c};
-	});
-var $rtfeldman$elm_css$VirtualDom$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$Node;
-var $rtfeldman$elm_css$Html$Styled$node = $rtfeldman$elm_css$VirtualDom$Styled$node;
 var $rtfeldman$elm_css$Html$Styled$button = $rtfeldman$elm_css$Html$Styled$node('button');
 var $rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
 	function (a, b, c) {
@@ -11999,6 +12000,10 @@ var $author$project$StylesExtra$gapByMargin = function (n) {
 					]))
 			]));
 };
+var $rtfeldman$elm_css$Html$Styled$h1 = $rtfeldman$elm_css$Html$Styled$node('h1');
+var $rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
+	return A2($rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
+};
 var $rtfeldman$elm_css$Html$Styled$h2 = $rtfeldman$elm_css$Html$Styled$node('h2');
 var $author$project$Main$notes = function () {
 	var lines = _List_fromArray(
@@ -12075,12 +12080,37 @@ var $author$project$Main$view = function (m) {
 				]),
 			_List_fromArray(
 				[
+					A2(
+					$rtfeldman$elm_css$Html$Styled$h1,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('17式インスパイアデッキパワー計算機')
+						])),
 					$author$project$Main$calcResult(
 					$author$project$History$newest(m.history)),
 					$author$project$Main$addCardForm(m),
 					$author$project$Main$removeCardForm(m),
 					$author$project$Main$currentCardList(m),
-					$author$project$Main$notes
+					$author$project$Main$notes,
+					A2(
+					$rtfeldman$elm_css$Html$Styled$div,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text('リポジトリはこちら'),
+							A2(
+							$rtfeldman$elm_css$Html$Styled$a,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/tsukimizake/sts-seventeen')
+								]),
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$text('https://github.com/tsukimizake/sts-seventeen')
+								])),
+							$rtfeldman$elm_css$Html$Styled$text('バグ報告とかほしいカード報告もこちらのissueへ')
+						]))
 				]))
 		]);
 };
