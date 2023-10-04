@@ -130,8 +130,7 @@ notes =
             div []
                 [ text "・17式本家様はこちら"
                 , a [ href "https://www.nicovideo.jp/watch/sm40441713" ]
-                    [ text "https://www.nicovideo.jp/watch/sm40441713"
-                    ]
+                    [ text "https://www.nicovideo.jp/watch/sm40441713" ]
                 ]
     in
     div [] <|
