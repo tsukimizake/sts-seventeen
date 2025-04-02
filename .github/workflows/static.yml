@@ -35,7 +35,7 @@ jobs:
         uses: jorelali/setup-elm@v5
         with:
           elm-version: 0.19.1
-      - run: elm make src/Main.elm --optimize
+      - run: elm make src/Main.elm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,4 +47,4 @@ jobs:
           
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v2
