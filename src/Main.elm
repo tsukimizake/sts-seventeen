@@ -310,8 +310,8 @@ floatRow =
 floatRowWithMana : String -> Float -> Float -> List (Html msg)
 floatRowWithMana label val valMana =
     [ div [] [ text label ]
-    , div [ css [ minWidth (px 170) ] ] [ text <| String.fromFloat val ]
-    , div [] [ text <| "マナ考慮: " ++ String.fromFloat valMana ]
+    , div [ css [ minWidth (px 170) ] ] [ text <| "マナ考慮: " ++ String.fromFloat valMana ]
+    , div [] [ text <| "マナ考慮なし: " ++ String.fromFloat val ]
     ]
 
 
