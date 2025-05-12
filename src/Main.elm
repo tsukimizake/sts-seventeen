@@ -14,6 +14,11 @@ import StylesExtra exposing (gapByMargin)
 import Utils exposing (..)
 
 
+isAttack : Card -> Bool
+isAttack c =
+    c.attackTimes /= 0
+
+
 type alias Model =
     { history : History State }
 
@@ -180,23 +185,36 @@ currentCardList m =
 
 addCardForm : Model -> Html Msg
 addCardForm _ =
-    div
-        []
-        [ text "カードの追加"
-        , div
-            [ css
-                [ display grid
-                , gridTemplateColumns <| List.repeat 10 "1fr"
-                , gridColumnGap (px 10)
-                , gridRowGap (px 10)
-                ]
-            ]
-            (Card.possibleCards
+    let
+        -- アタック／スキルへ振り分け
+        ( attackCards, skillCards ) =
+            Card.possibleCards |> List.partition isAttack
+
+        -- ボタン表示用共通関数
+        viewButtons cards =
+            cards
                 |> List.map
                     (\card ->
-                        button [ onClick <| AddCard card, css [ borderStyle solid, borderWidth (px 1) ] ] [ text card.name ]
+                        button
+                            [ onClick <| AddCard card
+                            , css [ borderStyle solid, borderWidth (px 1) ]
+                            ]
+                            [ text card.name ]
                     )
-            )
+
+        -- グリッドレイアウト共通指定
+        gridStyle =
+            [ display grid
+            , gridTemplateColumns <| List.repeat 10 "1fr"
+            , gridColumnGap (px 10)
+            , gridRowGap (px 10)
+            ]
+    in
+    div []
+        [ div [] [ text "アタック追加" ]
+        , div [ css gridStyle ] (viewButtons attackCards)
+        , div [] [ text "スキル追加" ]
+        , div [ css gridStyle ] (viewButtons skillCards)
         ]
 
 

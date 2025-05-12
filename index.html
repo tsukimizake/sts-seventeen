@@ -8316,6 +8316,9 @@ var $author$project$Utils$gridTemplateColumns = function (units) {
 		'grid-template-columns',
 		A2($elm$core$String$join, ' ', units));
 };
+var $author$project$Main$isAttack = function (c) {
+	return !(!c.bg);
+};
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
 };
@@ -8341,6 +8344,24 @@ var $rtfeldman$elm_css$Html$Styled$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $elm$core$List$partition = F2(
+	function (pred, list) {
+		var step = F2(
+			function (x, _v0) {
+				var trues = _v0.a;
+				var falses = _v0.b;
+				return pred(x) ? _Utils_Tuple2(
+					A2($elm$core$List$cons, x, trues),
+					falses) : _Utils_Tuple2(
+					trues,
+					A2($elm$core$List$cons, x, falses));
+			});
+		return A3(
+			$elm$core$List$foldr,
+			step,
+			_Utils_Tuple2(_List_Nil, _List_Nil),
+			list);
+	});
 var $author$project$Card$Ironclad$possibleCards = A2(
 	$elm$core$List$map,
 	function ($) {
@@ -8385,51 +8406,77 @@ var $rtfeldman$elm_css$VirtualDom$Styled$text = function (str) {
 };
 var $rtfeldman$elm_css$Html$Styled$text = $rtfeldman$elm_css$VirtualDom$Styled$text;
 var $author$project$Main$addCardForm = function (_v0) {
+	var viewButtons = function (cards) {
+		return A2(
+			$elm$core$List$map,
+			function (card) {
+				return A2(
+					$rtfeldman$elm_css$Html$Styled$button,
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$Events$onClick(
+							$author$project$Main$AddCard(card)),
+							$rtfeldman$elm_css$Html$Styled$Attributes$css(
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$solid),
+									$rtfeldman$elm_css$Css$borderWidth(
+									$rtfeldman$elm_css$Css$px(1))
+								]))
+						]),
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Html$Styled$text(card.bG)
+						]));
+			},
+			cards);
+	};
+	var gridStyle = _List_fromArray(
+		[
+			$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
+			$author$project$Utils$gridTemplateColumns(
+			A2($elm$core$List$repeat, 10, '1fr')),
+			$author$project$Utils$gridColumnGap(
+			$rtfeldman$elm_css$Css$px(10)),
+			$author$project$Utils$gridRowGap(
+			$rtfeldman$elm_css$Css$px(10))
+		]);
+	var _v1 = A2($elm$core$List$partition, $author$project$Main$isAttack, $author$project$Card$Ironclad$possibleCards);
+	var attackCards = _v1.a;
+	var skillCards = _v1.b;
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_Nil,
 		_List_fromArray(
 			[
-				$rtfeldman$elm_css$Html$Styled$text('カードの追加'),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('アタック追加')
+					])),
 				A2(
 				$rtfeldman$elm_css$Html$Styled$div,
 				_List_fromArray(
 					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$display($author$project$Utils$grid),
-								$author$project$Utils$gridTemplateColumns(
-								A2($elm$core$List$repeat, 10, '1fr')),
-								$author$project$Utils$gridColumnGap(
-								$rtfeldman$elm_css$Css$px(10)),
-								$author$project$Utils$gridRowGap(
-								$rtfeldman$elm_css$Css$px(10))
-							]))
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(gridStyle)
 					]),
+				viewButtons(attackCards)),
 				A2(
-					$elm$core$List$map,
-					function (card) {
-						return A2(
-							$rtfeldman$elm_css$Html$Styled$button,
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$Events$onClick(
-									$author$project$Main$AddCard(card)),
-									$rtfeldman$elm_css$Html$Styled$Attributes$css(
-									_List_fromArray(
-										[
-											$rtfeldman$elm_css$Css$borderStyle($rtfeldman$elm_css$Css$solid),
-											$rtfeldman$elm_css$Css$borderWidth(
-											$rtfeldman$elm_css$Css$px(1))
-										]))
-								]),
-							_List_fromArray(
-								[
-									$rtfeldman$elm_css$Html$Styled$text(card.bG)
-								]));
-					},
-					$author$project$Card$Ironclad$possibleCards))
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text('スキル追加')
+					])),
+				A2(
+				$rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$Attributes$css(gridStyle)
+					]),
+				viewButtons(skillCards))
 			]));
 };
 var $author$project$Main$UpdateMana = function (a) {
