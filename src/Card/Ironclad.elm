@@ -170,7 +170,7 @@ offering : CardDef
 offering =
     let
         n =
-            { default | name = "供物", mana = -2, draw = 3, block = -6 }
+            { default | name = "供物", mana = -2, draw = 3, block = -6, attackTimes = 0 }
     in
     mkCardDef n (s_draw 5)
 
@@ -197,7 +197,7 @@ warCry : CardDef
 warCry =
     let
         n =
-            { default | name = "雄叫び", mana = 0, draw = 1 }
+            { default | name = "雄叫び", mana = 0, draw = 1, attackTimes = 0 }
     in
     mkCardDef n (s_draw 2)
 
@@ -269,7 +269,7 @@ burningPact : CardDef
 burningPact =
     let
         n =
-            { default | name = "焦熱の契約", mana = 0, draw = 2 }
+            { default | name = "焦熱の契約", mana = 0, draw = 2, attackTimes = 0 }
     in
     mkCardDef n (s_draw 3)
 
