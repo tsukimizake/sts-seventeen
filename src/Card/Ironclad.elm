@@ -193,6 +193,15 @@ flameBarrier =
     mkCardDef n (s_block 16)
 
 
+immovable : CardDef
+immovable =
+    let
+        n =
+            { default | name = "不動", block = 30, mana = 2, attackTimes = 0 }
+    in
+    mkCardDef n (s_block 40)
+
+
 warCry : CardDef
 warCry =
     let
@@ -294,7 +303,7 @@ upperCut =
 
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, warCry, severSoul, seeingRed, immolate, carnage, buldegeon, wildStrike, bloodLetting, burningPact, clothesline, upperCut ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, immovable, warCry, severSoul, seeingRed, immolate, carnage, buldegeon, wildStrike, bloodLetting, burningPact, clothesline, upperCut ]
 
 
 
