@@ -309,16 +309,28 @@ secondWind =
                         |> List.filter (isAttack >> not)
                         |> List.length
 
-                deckSize =
+                cardCount =
                     List.length deck
 
-                drawPerTurn : Float
+                drawSum =
+                    deck
+                        |> List.map (evaluate [])
+                        |> List.map .draw
+                        |> List.sum
+
+                loopTurn =
+                    toFloat (cardCount - drawSum) / 5
+
                 drawPerTurn =
-                    5
+                    if loopTurn > 0 then
+                        toFloat cardCount / loopTurn
+
+                    else
+                        0
 
                 block =
-                    if deckSize > 0 then
-                        round (toFloat skillsInDeck / toFloat deckSize * drawPerTurn * toFloat rate)
+                    if cardCount > 0 && loopTurn > 0 then
+                        round ((toFloat skillsInDeck / toFloat cardCount) * drawPerTurn * toFloat rate)
 
                     else
                         0
