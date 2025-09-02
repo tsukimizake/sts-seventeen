@@ -304,7 +304,7 @@ secondWind =
     let
         effect rate name deck =
             let
-                skillsIntheDeck =
+                skillsInDeck =
                     deck
                         |> List.filter (isAttack >> not)
                         |> List.length
@@ -312,9 +312,13 @@ secondWind =
                 deckSize =
                     List.length deck
 
+                drawPerTurn : Float
+                drawPerTurn =
+                    5
+
                 block =
                     if deckSize > 0 then
-                        round (toFloat skillsIntheDeck / toFloat deckSize * toFloat rate)
+                        round (toFloat skillsInDeck / toFloat deckSize * drawPerTurn * toFloat rate)
 
                     else
                         0
