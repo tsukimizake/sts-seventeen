@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Browser
 import Card exposing (Card)
-import Card.Ironclad as Card
+import Card.Ironclad as Ironclad
 import Css exposing (..)
 import History exposing (History)
 import Html.Styled exposing (..)
@@ -12,11 +12,6 @@ import List.Extra
 import RecordSetter exposing (..)
 import StylesExtra exposing (gapByMargin)
 import Utils exposing (..)
-
-
-isAttack : Card -> Bool
-isAttack c =
-    c.attackTimes /= 0
 
 
 type alias Model =
@@ -43,7 +38,7 @@ initialModel =
 
 initialCards : List Card
 initialCards =
-    List.repeat 5 Card.strike.normal ++ List.repeat 4 Card.guard.normal ++ [ Card.bash.normal ]
+    List.repeat 5 Ironclad.strike.normal ++ List.repeat 4 Ironclad.guard.normal ++ [ Ironclad.bash.normal ]
 
 
 type Msg
@@ -70,7 +65,7 @@ update msg model =
 
         UpgradeCard idx card ->
             model
-                |> pushCardsHistory (\cards -> List.Extra.setAt idx (Card.upgrade card) cards)
+                |> pushCardsHistory (\cards -> List.Extra.setAt idx (Ironclad.upgrade card) cards)
                 |> noCmd
 
         RevertChange ->
@@ -171,7 +166,7 @@ currentCardList m =
                                     ]
                                 ]
                                 [ button [ onClick <| RemoveCard idx ] [ text "除去" ]
-                                , if card.name |> String.endsWith "+" then
+                                , if Card.name card |> String.endsWith "+" then
                                     noHtml
 
                                   else
@@ -188,7 +183,7 @@ addCardForm _ =
     let
         -- アタック／スキルへ振り分け
         ( attackCards, skillCards ) =
-            Card.possibleCards |> List.partition isAttack
+            Ironclad.possibleCards |> List.partition Card.isAttack
 
         -- ボタン表示用共通関数
         viewButtons cards =
@@ -199,7 +194,7 @@ addCardForm _ =
                             [ onClick <| AddCard card
                             , css [ borderStyle solid, borderWidth (px 1) ]
                             ]
-                            [ text card.name ]
+                            [ text (Card.name card) ]
                     )
 
         -- グリッドレイアウト共通指定
@@ -229,17 +224,20 @@ removeCardForm m =
 calcResult : State -> Html Msg
 calcResult { cards, manaPerTurn, strength } =
     let
+        evaluated =
+            List.map (Card.evaluate cards) cards
+
         damage =
-            cards |> List.map (\card -> (card.attack + strength) * toFloat card.attackTimes) |> List.sum
+            evaluated |> List.map (\card -> (card.attack + strength) * toFloat card.attackTimes) |> List.sum
 
         block =
-            cards |> List.map .block |> List.sum |> toFloat
+            evaluated |> List.map .block |> List.sum |> toFloat
 
         cardCount =
-            cards |> List.length
+            evaluated |> List.length
 
         drawSum =
-            cards |> List.map .draw |> List.sum
+            evaluated |> List.map .draw |> List.sum
 
         loopTurn =
             toFloat (cardCount - drawSum) / toFloat 5
@@ -254,19 +252,16 @@ calcResult { cards, manaPerTurn, strength } =
             perLoop damage
 
         vulTurn =
-            cards |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
+            evaluated |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
 
         dmgPerLoopVul =
             dmgPerLoop + (vulTurn / loopTurn) * dmgPerLoop * 0.5
 
-        dmgPerLoopVulMana =
-            perLoopMana atkManaConsumeSum dmgPerLoopVul
-
         manaGainSum =
-            cards |> List.filter (\c -> c.mana < 0) |> List.map .mana |> List.sum |> toFloat
+            evaluated |> List.filter (\c -> c.mana < 0) |> List.map .mana |> List.sum |> toFloat
 
         atkManaConsumeSum =
-            cards
+            evaluated
                 |> List.filter (\c -> c.mana >= 0)
                 |> List.filter (\c -> c.attackTimes /= 0)
                 |> List.map .mana
@@ -274,7 +269,7 @@ calcResult { cards, manaPerTurn, strength } =
                 |> (\x -> toFloat x + manaGainSum)
 
         blockManaConsumeSum =
-            cards
+            evaluated
                 |> List.filter (\c -> c.mana >= 0)
                 |> List.filter (\c -> c.attackTimes == 0)
                 |> List.map .mana
@@ -289,6 +284,9 @@ calcResult { cards, manaPerTurn, strength } =
 
         blockPerLoopMana =
             perLoopMana blockManaConsumeSum blockPerLoop
+
+        dmgPerLoopVulMana =
+            perLoopMana atkManaConsumeSum dmgPerLoopVul
     in
     div [ css [ display grid, gridTemplateColumns [ "auto", "auto", "auto" ] ] ] <|
         List.concat

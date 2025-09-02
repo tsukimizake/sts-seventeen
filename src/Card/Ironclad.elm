@@ -1,19 +1,17 @@
 module Card.Ironclad exposing (..)
 
 import Card exposing (..)
-import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
 import RecordSetter exposing (..)
 
 
-mkCardDef : Card -> (Card -> Card) -> CardDef
+mkCardDef : CardStats -> (CardStats -> CardStats) -> CardDef
 mkCardDef card f =
     let
         plus =
             f card
                 |> s_name (card.name ++ "+")
     in
-    CardDef card plus
+    CardDef (SimpleCard card) (SimpleCard plus)
 
 
 undefinedCard : CardDef
@@ -301,14 +299,67 @@ upperCut =
     mkCardDef n (s_vulnerable 2 >> s_weak 2)
 
 
+secondWind : CardDef
+secondWind =
+    let
+        effect rate name deck =
+            let
+                skillsInDeck =
+                    deck
+                        |> List.filter (isAttack >> not)
+                        |> List.length
+
+                cardCount =
+                    List.length deck
+
+                drawSum =
+                    deck
+                        |> List.map (evaluate [])
+                        |> List.map .draw
+                        |> List.sum
+
+                loopTurn =
+                    toFloat (cardCount - drawSum) / 5
+
+                drawPerTurn =
+                    if loopTurn > 0 then
+                        toFloat cardCount / loopTurn
+
+                    else
+                        10
+
+                block =
+                    if cardCount > 0 && loopTurn > 0 then
+                        round ((toFloat skillsInDeck / toFloat cardCount) * drawPerTurn * toFloat rate)
+
+                    else
+                        -- should not happen
+                        0
+            in
+            { default
+                | name = name
+                , mana = 1
+                , attackTimes = 0
+                , block = block
+            }
+
+        normal =
+            ComplexCard (effect 5 "セカンドウィンド")
+
+        plus =
+            ComplexCard (effect 7 "セカンドウィンド+")
+    in
+    CardDef normal plus
+
+
 possibleCardDefs : List CardDef
 possibleCardDefs =
-    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, immovable, warCry, severSoul, seeingRed, immolate, carnage, buldegeon, wildStrike, bloodLetting, burningPact, clothesline, upperCut ]
+    [ undefinedCard, anger, feed, headButt, trueGrit, shrugItOff, ranpage, cleave, thunderClap, ghostArmor, hemokinesis, twinStrike, pommelStrike, offering, heavyBlade, flameBarrier, immovable, warCry, severSoul, seeingRed, immolate, carnage, buldegeon, wildStrike, bloodLetting, burningPact, clothesline, upperCut, secondWind ]
 
 
 
 -- TODO 特殊カードメモ
--- パーフェクトストライク, 旋風人、セカンドウィンド、武装、ボディスラム、クラッシュ、荒廃、バトルトランス、ドロップキック、塹壕、激怒、鬼火
+-- パーフェクトストライク, 旋風人、武装、ボディスラム、クラッシュ、荒廃、バトルトランス、ドロップキック、塹壕、激怒、鬼火
 -- 無理じゃねなやつ
 -- 血には血を、武装解除、二刀流、内なる刃、燃えさかるブロー、見張り、衝撃波、ダブルタップ、発掘、死神
 -- あと筋力とパワーは無視
@@ -327,12 +378,7 @@ allCardDefs =
 
 upgrade : Card -> Card
 upgrade card =
-    List.filter (\def -> def.normal.name == card.name) allCardDefs
+    List.filter (\def -> name def.normal == name card) allCardDefs
         |> List.head
         |> Maybe.map .plus
         |> Maybe.withDefault card
-
-
-view : Card -> Html msg
-view card =
-    div [ css [] ] [ text <| .name card ]

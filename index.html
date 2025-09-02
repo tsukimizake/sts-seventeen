@@ -798,11 +798,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.a6.aw === region.bt.aw)
+	if (region.a8.aw === region.bu.aw)
 	{
-		return 'on line ' + region.a6.aw;
+		return 'on line ' + region.a8.aw;
 	}
-	return 'on lines ' + region.a6.aw + ' through ' + region.bt.aw;
+	return 'on lines ' + region.a8.aw + ' through ' + region.bu.aw;
 }
 
 
@@ -2734,8 +2734,8 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
 		E: func(record.E),
-		a7: record.a7,
-		a4: record.a4
+		a9: record.a9,
+		a6: record.a6
 	}
 });
 
@@ -3004,10 +3004,10 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 
 		var value = result.a;
 		var message = !tag ? value : tag < 3 ? value.a : value.E;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.a7;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.a9;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.a4) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.a6) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3997,7 +3997,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 		impl.cz,
 		impl.cx,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.a5 && impl.a5(sendToApp)
+			var divertHrefToApp = impl.a7 && impl.a7(sendToApp)
 			var view = impl.cC;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -4072,7 +4072,7 @@ function _Browser_application(impl)
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		a5: function(sendToApp)
+		a7: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4089,7 +4089,7 @@ function _Browser_application(impl)
 					sendToApp(onUrlRequest(
 						(next
 							&& curr.bP === next.bP
-							&& curr.bz === next.bz
+							&& curr.bA === next.bA
 							&& curr.bM.a === next.bM.a
 						)
 							? $elm$browser$Browser$Internal(next)
@@ -4266,7 +4266,7 @@ function _Browser_getViewport()
 			b4: _Browser_window.pageXOffset,
 			b5: _Browser_window.pageYOffset,
 			b3: _Browser_doc.documentElement.clientWidth,
-			by: _Browser_doc.documentElement.clientHeight
+			bz: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4277,7 +4277,7 @@ function _Browser_getScene()
 	var elem = _Browser_doc.documentElement;
 	return {
 		b3: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		by: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		bz: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4302,13 +4302,13 @@ function _Browser_getViewportOf(id)
 		return {
 			bU: {
 				b3: node.scrollWidth,
-				by: node.scrollHeight
+				bz: node.scrollHeight
 			},
 			b0: {
 				b4: node.scrollLeft,
 				b5: node.scrollTop,
 				b3: node.clientWidth,
-				by: node.clientHeight
+				bz: node.clientHeight
 			}
 		};
 	});
@@ -4343,13 +4343,13 @@ function _Browser_getElement(id)
 				b4: x,
 				b5: y,
 				b3: _Browser_doc.documentElement.clientWidth,
-				by: _Browser_doc.documentElement.clientHeight
+				bz: _Browser_doc.documentElement.clientHeight
 			},
 			cg: {
 				b4: x + rect.left,
 				b5: y + rect.top,
 				b3: rect.width,
-				by: rect.height
+				bz: rect.height
 			}
 		};
 	});
@@ -4925,7 +4925,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {bx: fragment, bz: host, bK: path, bM: port_, bP: protocol, bQ: query};
+		return {by: fragment, bA: host, bK: path, bM: port_, bP: protocol, bQ: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5212,30 +5212,36 @@ var $elm$core$Basics$composeR = F3(
 		return g(
 			f(x));
 	});
-var $author$project$Card$default = {bf: 0, bg: 1, bk: 0, br: 0, bE: 0, bG: '', bW: 0, b1: 0, b2: 0};
+var $author$project$Card$default = {bh: 0, aZ: 1, bl: 0, bs: 0, bF: 0, a3: '', bW: 0, b1: 0, b2: 0};
 var $author$project$Card$CardDef = F2(
 	function (normal, plus) {
 		return {co: normal, cs: plus};
 	});
+var $author$project$Card$SimpleCard = function (a) {
+	return {$: 0, a: a};
+};
 var $author$project$RecordSetter$s_name = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{bG: value__});
+			{a3: value__});
 	});
 var $author$project$Card$Ironclad$mkCardDef = F2(
 	function (card, f) {
 		var plus = A2(
 			$author$project$RecordSetter$s_name,
-			card.bG + '+',
+			card.a3 + '+',
 			f(card));
-		return A2($author$project$Card$CardDef, card, plus);
+		return A2(
+			$author$project$Card$CardDef,
+			$author$project$Card$SimpleCard(card),
+			$author$project$Card$SimpleCard(plus));
 	});
 var $author$project$RecordSetter$s_attack = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{bf: value__});
+			{bh: value__});
 	});
 var $author$project$RecordSetter$s_vulnerable = F2(
 	function (value__, record__) {
@@ -5246,7 +5252,7 @@ var $author$project$RecordSetter$s_vulnerable = F2(
 var $author$project$Card$Ironclad$bash = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 8, bE: 2, bG: '強打', b1: 2});
+		{bh: 8, bF: 2, a3: '強打', b1: 2});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -5259,12 +5265,12 @@ var $author$project$RecordSetter$s_block = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{bk: value__});
+			{bl: value__});
 	});
 var $author$project$Card$Ironclad$guard = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bg: 0, bk: 5, bE: 1, bG: '防御'});
+		{aZ: 0, bl: 5, bF: 1, a3: '防御'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -5294,7 +5300,7 @@ var $elm$core$List$repeat = F2(
 var $author$project$Card$Ironclad$strike = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 6, bE: 1, bG: 'ストライク'});
+		{bh: 6, bF: 1, a3: 'ストライク'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6501,7 +6507,7 @@ var $author$project$History$update = F2(
 var $author$project$Card$Ironclad$anger = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 6, bG: '怒り'});
+		{bh: 6, a3: '怒り'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6511,12 +6517,12 @@ var $author$project$RecordSetter$s_mana = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{bE: value__});
+			{bF: value__});
 	});
 var $author$project$Card$Ironclad$bloodLetting = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bg: 0, bE: -2, bG: '瀉血'});
+		{aZ: 0, bF: -2, a3: '瀉血'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6525,7 +6531,7 @@ var $author$project$Card$Ironclad$bloodLetting = function () {
 var $author$project$Card$Ironclad$buldegeon = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 32, bE: 3, bG: '脳天割り'});
+		{bh: 32, bF: 3, a3: '脳天割り'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6535,12 +6541,12 @@ var $author$project$RecordSetter$s_draw = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{br: value__});
+			{bs: value__});
 	});
 var $author$project$Card$Ironclad$burningPact = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{br: 2, bE: 0, bG: '焦熱の契約'});
+		{aZ: 0, bs: 2, bF: 0, a3: '焦熱の契約'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6549,7 +6555,7 @@ var $author$project$Card$Ironclad$burningPact = function () {
 var $author$project$Card$Ironclad$carnage = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 20, bE: 2, bG: '大虐殺'});
+		{bh: 20, bF: 2, a3: '大虐殺'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6558,7 +6564,7 @@ var $author$project$Card$Ironclad$carnage = function () {
 var $author$project$Card$Ironclad$cleave = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 8, bE: 1, bG: 'なぎ払い'});
+		{bh: 8, bF: 1, a3: 'なぎ払い'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6573,7 +6579,7 @@ var $author$project$RecordSetter$s_weak = F2(
 var $author$project$Card$Ironclad$clothesline = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 12, bE: 2, bG: 'ラリアット', b2: 2});
+		{bh: 12, bF: 2, a3: 'ラリアット', b2: 2});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6585,7 +6591,7 @@ var $author$project$Card$Ironclad$clothesline = function () {
 var $author$project$Card$Ironclad$feed = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 10, bE: 1, bG: '捕食'});
+		{bh: 10, bF: 1, a3: '捕食'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6594,7 +6600,7 @@ var $author$project$Card$Ironclad$feed = function () {
 var $author$project$Card$Ironclad$flameBarrier = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bg: 0, bk: 12, bE: 2, bG: '炎の障壁'});
+		{aZ: 0, bl: 12, bF: 2, a3: '炎の障壁'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6603,7 +6609,7 @@ var $author$project$Card$Ironclad$flameBarrier = function () {
 var $author$project$Card$Ironclad$ghostArmor = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bg: 0, bk: 10, bE: 1, bG: 'ゴーストアーマー'});
+		{aZ: 0, bl: 10, bF: 1, a3: 'ゴーストアーマー'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6612,7 +6618,7 @@ var $author$project$Card$Ironclad$ghostArmor = function () {
 var $author$project$Card$Ironclad$headButt = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 9, bE: 1, bG: 'ヘッドバット'});
+		{bh: 9, bF: 1, a3: 'ヘッドバット'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6622,12 +6628,12 @@ var $author$project$RecordSetter$s_attackTimes = F2(
 	function (value__, record__) {
 		return _Utils_update(
 			record__,
-			{bg: value__});
+			{aZ: value__});
 	});
 var $author$project$Card$Ironclad$heavyBlade = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 14 / 3, bg: 3, bE: 2, bG: 'ヘビーブレード'});
+		{bh: 14 / 3, aZ: 3, bF: 2, a3: 'ヘビーブレード'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6639,7 +6645,7 @@ var $author$project$Card$Ironclad$heavyBlade = function () {
 var $author$project$Card$Ironclad$hemokinesis = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 15, bk: -2, bE: 1, bG: 'ヘモキネシス'});
+		{bh: 15, bl: -2, bF: 1, a3: 'ヘモキネシス'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6648,16 +6654,25 @@ var $author$project$Card$Ironclad$hemokinesis = function () {
 var $author$project$Card$Ironclad$immolate = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 21, bE: 2, bG: '焼身'});
+		{bh: 21, bF: 2, a3: '焼身'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
 		$author$project$RecordSetter$s_attack(28));
 }();
+var $author$project$Card$Ironclad$immovable = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{aZ: 0, bl: 30, bF: 2, a3: '不動'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_block(40));
+}();
 var $author$project$Card$Ironclad$offering = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bk: -6, br: 3, bE: -2, bG: '供物'});
+		{aZ: 0, bl: -6, bs: 3, bF: -2, a3: '供物'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6666,7 +6681,7 @@ var $author$project$Card$Ironclad$offering = function () {
 var $author$project$Card$Ironclad$pommelStrike = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 9, br: 1, bE: 1, bG: 'ポンメルストライク'});
+		{bh: 9, bs: 1, bF: 1, a3: 'ポンメルストライク'});
 	return A2(
 		$author$project$Card$Ironclad$mkCardDef,
 		n,
@@ -6678,105 +6693,22 @@ var $author$project$Card$Ironclad$pommelStrike = function () {
 var $author$project$Card$Ironclad$ranpage = function () {
 	var n = _Utils_update(
 		$author$project$Card$default,
-		{bf: 8, bE: 1, bG: 'ランページ'});
+		{bh: 8, bF: 1, a3: 'ランページ'});
 	return A2($author$project$Card$Ironclad$mkCardDef, n, $elm$core$Basics$identity);
 }();
-var $author$project$Card$Ironclad$seeingRed = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bg: 0, bE: -1, bG: '激昂'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_mana(-2));
-}();
-var $author$project$Card$Ironclad$severSoul = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bf: 16, bE: 2, bG: '霊魂切断'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_attack(22));
-}();
-var $author$project$Card$Ironclad$shrugItOff = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bg: 0, bk: 8, br: 1, bE: 1, bG: '受け流し'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_block(11));
-}();
-var $author$project$Card$Ironclad$thunderClap = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bf: 4, bE: 1, bG: 'サンダークラップ', b1: 1});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_attack(7));
-}();
-var $author$project$Card$Ironclad$trueGrit = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bg: 0, bk: 7, bE: 1, bG: '不屈の闘志'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_block(9));
-}();
-var $author$project$Card$Ironclad$twinStrike = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bf: 5, bg: 2, bE: 1, bG: 'ツインストライク'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_attack(7));
-}();
-var $author$project$Card$Ironclad$undefinedCard = A2(
-	$author$project$Card$Ironclad$mkCardDef,
-	_Utils_update(
-		$author$project$Card$default,
-		{bG: '未実装カード'}),
-	$elm$core$Basics$identity);
-var $author$project$Card$Ironclad$upperCut = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bf: 13, bE: 2, bG: 'アッパーカット', b1: 1, b2: 1});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		A2(
-			$elm$core$Basics$composeR,
-			$author$project$RecordSetter$s_vulnerable(2),
-			$author$project$RecordSetter$s_weak(2)));
-}();
-var $author$project$Card$Ironclad$warCry = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{br: 1, bE: 0, bG: '雄叫び'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_draw(2));
-}();
-var $author$project$Card$Ironclad$wildStrike = function () {
-	var n = _Utils_update(
-		$author$project$Card$default,
-		{bf: 12, br: -1, bE: 1, bG: '乱打'});
-	return A2(
-		$author$project$Card$Ironclad$mkCardDef,
-		n,
-		$author$project$RecordSetter$s_attack(17));
-}();
-var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
-	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate, $author$project$Card$Ironclad$carnage, $author$project$Card$Ironclad$buldegeon, $author$project$Card$Ironclad$wildStrike, $author$project$Card$Ironclad$bloodLetting, $author$project$Card$Ironclad$burningPact, $author$project$Card$Ironclad$clothesline, $author$project$Card$Ironclad$upperCut]);
-var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
-	_List_fromArray(
-		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
-	$author$project$Card$Ironclad$possibleCardDefs);
+var $author$project$Card$ComplexCard = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$Card$evaluate = F2(
+	function (deck, c) {
+		if (!c.$) {
+			var s = c.a;
+			return s;
+		} else {
+			var effect = c.a;
+			return effect(deck);
+		}
+	});
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -6788,6 +6720,155 @@ var $elm$core$List$filter = F2(
 			_List_Nil,
 			list);
 	});
+var $author$project$Card$cardBase_internal = function (c) {
+	if (!c.$) {
+		var s = c.a;
+		return s;
+	} else {
+		var effect = c.a;
+		return effect(_List_Nil);
+	}
+};
+var $author$project$Card$isAttack = function (c) {
+	return !(!$author$project$Card$cardBase_internal(c).aZ);
+};
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $elm$core$Basics$not = _Basics_not;
+var $elm$core$Basics$round = _Basics_round;
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
+var $author$project$Card$Ironclad$secondWind = function () {
+	var effect = F3(
+		function (rate, name, deck) {
+			var skillsInDeck = $elm$core$List$length(
+				A2(
+					$elm$core$List$filter,
+					A2($elm$core$Basics$composeR, $author$project$Card$isAttack, $elm$core$Basics$not),
+					deck));
+			var drawSum = $elm$core$List$sum(
+				A2(
+					$elm$core$List$map,
+					function ($) {
+						return $.bs;
+					},
+					A2(
+						$elm$core$List$map,
+						$author$project$Card$evaluate(_List_Nil),
+						deck)));
+			var cardCount = $elm$core$List$length(deck);
+			var loopTurn = (cardCount - drawSum) / 5;
+			var drawPerTurn = (loopTurn > 0) ? A2($elm$core$Basics$min, 10, cardCount / loopTurn) : 0;
+			var block = ((cardCount > 0) && (loopTurn > 0)) ? $elm$core$Basics$round(((skillsInDeck / cardCount) * drawPerTurn) * rate) : 0;
+			return _Utils_update(
+				$author$project$Card$default,
+				{aZ: 0, bl: block, bF: 1, a3: name});
+		});
+	var normal = $author$project$Card$ComplexCard(
+		A2(effect, 5, 'セカンドウィンド'));
+	var plus = $author$project$Card$ComplexCard(
+		A2(effect, 7, 'セカンドウィンド+'));
+	return A2($author$project$Card$CardDef, normal, plus);
+}();
+var $author$project$Card$Ironclad$seeingRed = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{aZ: 0, bF: -1, a3: '激昂'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_mana(-2));
+}();
+var $author$project$Card$Ironclad$severSoul = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bh: 16, bF: 2, a3: '霊魂切断'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(22));
+}();
+var $author$project$Card$Ironclad$shrugItOff = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{aZ: 0, bl: 8, bs: 1, bF: 1, a3: '受け流し'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_block(11));
+}();
+var $author$project$Card$Ironclad$thunderClap = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bh: 4, bF: 1, a3: 'サンダークラップ', b1: 1});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(7));
+}();
+var $author$project$Card$Ironclad$trueGrit = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{aZ: 0, bl: 7, bF: 1, a3: '不屈の闘志'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_block(9));
+}();
+var $author$project$Card$Ironclad$twinStrike = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bh: 5, aZ: 2, bF: 1, a3: 'ツインストライク'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(7));
+}();
+var $author$project$Card$Ironclad$undefinedCard = A2(
+	$author$project$Card$Ironclad$mkCardDef,
+	_Utils_update(
+		$author$project$Card$default,
+		{a3: '未実装カード'}),
+	$elm$core$Basics$identity);
+var $author$project$Card$Ironclad$upperCut = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bh: 13, bF: 2, a3: 'アッパーカット', b1: 1, b2: 1});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		A2(
+			$elm$core$Basics$composeR,
+			$author$project$RecordSetter$s_vulnerable(2),
+			$author$project$RecordSetter$s_weak(2)));
+}();
+var $author$project$Card$Ironclad$warCry = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{aZ: 0, bs: 1, bF: 0, a3: '雄叫び'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_draw(2));
+}();
+var $author$project$Card$Ironclad$wildStrike = function () {
+	var n = _Utils_update(
+		$author$project$Card$default,
+		{bh: 12, bs: -1, bF: 1, a3: '乱打'});
+	return A2(
+		$author$project$Card$Ironclad$mkCardDef,
+		n,
+		$author$project$RecordSetter$s_attack(17));
+}();
+var $author$project$Card$Ironclad$possibleCardDefs = _List_fromArray(
+	[$author$project$Card$Ironclad$undefinedCard, $author$project$Card$Ironclad$anger, $author$project$Card$Ironclad$feed, $author$project$Card$Ironclad$headButt, $author$project$Card$Ironclad$trueGrit, $author$project$Card$Ironclad$shrugItOff, $author$project$Card$Ironclad$ranpage, $author$project$Card$Ironclad$cleave, $author$project$Card$Ironclad$thunderClap, $author$project$Card$Ironclad$ghostArmor, $author$project$Card$Ironclad$hemokinesis, $author$project$Card$Ironclad$twinStrike, $author$project$Card$Ironclad$pommelStrike, $author$project$Card$Ironclad$offering, $author$project$Card$Ironclad$heavyBlade, $author$project$Card$Ironclad$flameBarrier, $author$project$Card$Ironclad$immovable, $author$project$Card$Ironclad$warCry, $author$project$Card$Ironclad$severSoul, $author$project$Card$Ironclad$seeingRed, $author$project$Card$Ironclad$immolate, $author$project$Card$Ironclad$carnage, $author$project$Card$Ironclad$buldegeon, $author$project$Card$Ironclad$wildStrike, $author$project$Card$Ironclad$bloodLetting, $author$project$Card$Ironclad$burningPact, $author$project$Card$Ironclad$clothesline, $author$project$Card$Ironclad$upperCut, $author$project$Card$Ironclad$secondWind]);
+var $author$project$Card$Ironclad$allCardDefs = _Utils_ap(
+	_List_fromArray(
+		[$author$project$Card$Ironclad$strike, $author$project$Card$Ironclad$guard, $author$project$Card$Ironclad$bash]),
+	$author$project$Card$Ironclad$possibleCardDefs);
 var $elm$core$List$head = function (list) {
 	if (list.b) {
 		var x = list.a;
@@ -6807,6 +6888,9 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
+var $author$project$Card$name = function (c) {
+	return $author$project$Card$cardBase_internal(c).a3;
+};
 var $elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
 		if (!maybe.$) {
@@ -6829,7 +6913,9 @@ var $author$project$Card$Ironclad$upgrade = function (card) {
 				A2(
 					$elm$core$List$filter,
 					function (def) {
-						return _Utils_eq(def.co.bG, card.bG);
+						return _Utils_eq(
+							$author$project$Card$name(def.co),
+							$author$project$Card$name(card));
 					},
 					$author$project$Card$Ironclad$allCardDefs))));
 };
@@ -6960,7 +7046,6 @@ var $elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var $elm$core$Basics$not = _Basics_not;
 var $elm$core$List$all = F2(
 	function (isOkay, list) {
 		return !A2(
@@ -7019,7 +7104,7 @@ var $rtfeldman$elm_css$Css$Structure$compactHelp = F2(
 			case 6:
 				var record = declaration.a;
 				return $elm$core$String$isEmpty(record.cd) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
-					A3($elm$core$Dict$insert, record.bG, record.cd, keyframesByName),
+					A3($elm$core$Dict$insert, record.a3, record.cd, keyframesByName),
 					declarations);
 			case 7:
 				var properties = declaration.a;
@@ -7065,7 +7150,7 @@ var $rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations = F2(
 					var name = _v0.a;
 					var decl = _v0.b;
 					return $rtfeldman$elm_css$Css$Structure$Keyframes(
-						{cd: decl, bG: name});
+						{cd: decl, a3: name});
 				},
 				$elm$core$Dict$toList(keyframesByName)),
 			compactedDeclarations);
@@ -7081,14 +7166,14 @@ var $rtfeldman$elm_css$Css$Structure$compactDeclarations = function (declaration
 	return A2($rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations, keyframesByName, compactedDeclarations);
 };
 var $rtfeldman$elm_css$Css$Structure$compactStylesheet = function (_v0) {
-	var charset = _v0.bp;
-	var imports = _v0.bA;
+	var charset = _v0.bq;
+	var imports = _v0.bB;
 	var namespaces = _v0.bH;
 	var declarations = _v0.ce;
 	return {
-		bp: charset,
+		bq: charset,
 		ce: $rtfeldman$elm_css$Css$Structure$compactDeclarations(declarations),
-		bA: imports,
+		bB: imports,
 		bH: namespaces
 	};
 };
@@ -7134,7 +7219,7 @@ var $rtfeldman$elm_css$Css$String$mapJoin = F3(
 		return A4($rtfeldman$elm_css$Css$String$mapJoinHelp, map, sep, strs, '');
 	});
 var $rtfeldman$elm_css$Css$Structure$Output$mediaExpressionToString = function (expression) {
-	return '(' + (expression.bv + (A2(
+	return '(' + (expression.bw + (A2(
 		$elm$core$Maybe$withDefault,
 		'',
 		A2(
@@ -7313,7 +7398,7 @@ var $rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration = function (d
 		case 5:
 			return 'TODO';
 		case 6:
-			var name = decl.a.bG;
+			var name = decl.a.a3;
 			var declaration = decl.a.cd;
 			return '@keyframes ' + (name + ('{' + (declaration + '}')));
 		case 7:
@@ -7325,8 +7410,8 @@ var $rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration = function (d
 	}
 };
 var $rtfeldman$elm_css$Css$Structure$Output$prettyPrint = function (_v0) {
-	var charset = _v0.bp;
-	var imports = _v0.bA;
+	var charset = _v0.bq;
+	var imports = _v0.bB;
 	var namespaces = _v0.bH;
 	var declarations = _v0.ce;
 	return $rtfeldman$elm_css$Css$Structure$Output$charsetToString(charset) + (A3($rtfeldman$elm_css$Css$String$mapJoin, $rtfeldman$elm_css$Css$Structure$Output$importToString, '\n', imports) + (A3($rtfeldman$elm_css$Css$String$mapJoin, $rtfeldman$elm_css$Css$Structure$Output$namespaceToString, '\n', namespaces) + (A3($rtfeldman$elm_css$Css$String$mapJoin, $rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration, '\n', declarations) + '')));
@@ -8103,7 +8188,7 @@ var $rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles = F2(
 						_List_fromArray(
 							[
 								$rtfeldman$elm_css$Css$Structure$Keyframes(
-								{cd: str, bG: name})
+								{cd: str, a3: name})
 							]));
 				case 4:
 					var _v12 = styles.a;
@@ -8237,13 +8322,13 @@ var $rtfeldman$elm_css$Css$Preprocess$Resolve$toDeclarations = function (snippet
 	}
 };
 var $rtfeldman$elm_css$Css$Preprocess$Resolve$toStructure = function (_v0) {
-	var charset = _v0.bp;
-	var imports = _v0.bA;
+	var charset = _v0.bq;
+	var imports = _v0.bB;
 	var namespaces = _v0.bH;
 	var snippets = _v0.bV;
 	var declarations = $rtfeldman$elm_css$Css$Preprocess$Resolve$extract(
 		A2($elm$core$List$concatMap, $rtfeldman$elm_css$Css$Preprocess$unwrapSnippet, snippets));
-	return {bp: charset, ce: declarations, bA: imports, bH: namespaces};
+	return {bq: charset, ce: declarations, bB: imports, bH: namespaces};
 };
 var $rtfeldman$elm_css$Css$Preprocess$Resolve$compile = function (sheet) {
 	return $rtfeldman$elm_css$Css$Structure$Output$prettyPrint(
@@ -8268,7 +8353,7 @@ var $rtfeldman$elm_css$VirtualDom$Styled$makeSnippet = F2(
 			]);
 	});
 var $rtfeldman$elm_css$Css$Preprocess$stylesheet = function (snippets) {
-	return {bp: $elm$core$Maybe$Nothing, bA: _List_Nil, bH: _List_Nil, bV: snippets};
+	return {bq: $elm$core$Maybe$Nothing, bB: _List_Nil, bH: _List_Nil, bV: snippets};
 };
 var $rtfeldman$elm_css$Css$Structure$ClassSelector = function (a) {
 	return {$: 0, a: a};
@@ -8315,9 +8400,6 @@ var $author$project$Utils$gridTemplateColumns = function (units) {
 		$rtfeldman$elm_css$Css$property,
 		'grid-template-columns',
 		A2($elm$core$String$join, ' ', units));
-};
-var $author$project$Main$isAttack = function (c) {
-	return !(!c.bg);
 };
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
@@ -8373,8 +8455,8 @@ var $elm$core$String$fromFloat = _String_fromNumber;
 var $rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
 	function (units, unitLabel, numericValue) {
 		return {
-			ba: 0,
-			bn: 0,
+			bc: 0,
+			bo: 0,
 			Z: 0,
 			l: 0,
 			av: 0,
@@ -8426,7 +8508,8 @@ var $author$project$Main$addCardForm = function (_v0) {
 						]),
 					_List_fromArray(
 						[
-							$rtfeldman$elm_css$Html$Styled$text(card.bG)
+							$rtfeldman$elm_css$Html$Styled$text(
+							$author$project$Card$name(card))
 						]));
 			},
 			cards);
@@ -8441,7 +8524,7 @@ var $author$project$Main$addCardForm = function (_v0) {
 			$author$project$Utils$gridRowGap(
 			$rtfeldman$elm_css$Css$px(10))
 		]);
-	var _v1 = A2($elm$core$List$partition, $author$project$Main$isAttack, $author$project$Card$Ironclad$possibleCards);
+	var _v1 = A2($elm$core$List$partition, $author$project$Card$isAttack, $author$project$Card$Ironclad$possibleCards);
 	var attackCards = _v1.a;
 	var skillCards = _v1.b;
 	return A2(
@@ -8628,44 +8711,41 @@ var $author$project$Main$intRow = F2(
 	function (s, n) {
 		return A3($author$project$Main$row, $elm$core$String$fromInt, s, n);
 	});
-var $elm$core$Basics$min = F2(
-	function (x, y) {
-		return (_Utils_cmp(x, y) < 0) ? x : y;
-	});
-var $elm$core$List$sum = function (numbers) {
-	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
-};
 var $author$project$Main$calcResult = function (_v0) {
 	var cards = _v0.ar;
 	var manaPerTurn = _v0.aM;
 	var strength = _v0.bW;
+	var evaluated = A2(
+		$elm$core$List$map,
+		$author$project$Card$evaluate(cards),
+		cards);
 	var manaGainSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
-				return $.bE;
+				return $.bF;
 			},
 			A2(
 				$elm$core$List$filter,
 				function (c) {
-					return c.bE < 0;
+					return c.bF < 0;
 				},
-				cards)));
+				evaluated)));
 	var drawSum = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
-				return $.br;
+				return $.bs;
 			},
-			cards));
+			evaluated));
 	var damage = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function (card) {
-				return (card.bf + strength) * card.bg;
+				return (card.bh + strength) * card.aZ;
 			},
-			cards));
-	var cardCount = $elm$core$List$length(cards);
+			evaluated));
+	var cardCount = $elm$core$List$length(evaluated);
 	var loopTurn = (cardCount - drawSum) / 5;
 	var perLoop = function (n) {
 		return n / loopTurn;
@@ -8684,7 +8764,7 @@ var $author$project$Main$calcResult = function (_v0) {
 				function ($) {
 					return $.b1;
 				},
-				cards)));
+				evaluated)));
 	var dmgPerLoopVul = dmgPerLoop + (((vulTurn / loopTurn) * dmgPerLoop) * 0.5);
 	var blockManaConsumeSum = function (x) {
 		return x + manaGainSum;
@@ -8693,26 +8773,26 @@ var $author$project$Main$calcResult = function (_v0) {
 			A2(
 				$elm$core$List$map,
 				function ($) {
-					return $.bE;
+					return $.bF;
 				},
 				A2(
 					$elm$core$List$filter,
 					function (c) {
-						return !c.bg;
+						return !c.aZ;
 					},
 					A2(
 						$elm$core$List$filter,
 						function (c) {
-							return c.bE >= 0;
+							return c.bF >= 0;
 						},
-						cards)))));
+						evaluated)))));
 	var block = $elm$core$List$sum(
 		A2(
 			$elm$core$List$map,
 			function ($) {
-				return $.bk;
+				return $.bl;
 			},
-			cards));
+			evaluated));
 	var blockPerLoop = perLoop(block);
 	var blockPerLoopMana = A2(perLoopMana, blockManaConsumeSum, blockPerLoop);
 	var atkManaConsumeSum = function (x) {
@@ -8722,19 +8802,19 @@ var $author$project$Main$calcResult = function (_v0) {
 			A2(
 				$elm$core$List$map,
 				function ($) {
-					return $.bE;
+					return $.bF;
 				},
 				A2(
 					$elm$core$List$filter,
 					function (c) {
-						return !(!c.bg);
+						return !(!c.aZ);
 					},
 					A2(
 						$elm$core$List$filter,
 						function (c) {
-							return c.bE >= 0;
+							return c.bF >= 0;
 						},
-						cards)))));
+						evaluated)))));
 	var dmgPerLoopMana = A2(perLoopMana, atkManaConsumeSum, dmgPerLoop);
 	var dmgPerLoopVulMana = A2(perLoopMana, atkManaConsumeSum, dmgPerLoopVul);
 	return A2(
@@ -8776,7 +8856,7 @@ var $author$project$Main$UpgradeCard = F2(
 	});
 var $elm$core$String$endsWith = _String_endsWith;
 var $author$project$Utils$noHtml = $rtfeldman$elm_css$Html$Styled$text('');
-var $author$project$Card$Ironclad$view = function (card) {
+var $author$project$Card$view = function (card) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
 		_List_fromArray(
@@ -8786,9 +8866,7 @@ var $author$project$Card$Ironclad$view = function (card) {
 		_List_fromArray(
 			[
 				$rtfeldman$elm_css$Html$Styled$text(
-				function ($) {
-					return $.bG;
-				}(card))
+				$author$project$Card$name(card))
 			]));
 };
 var $author$project$Main$currentCardList = function (m) {
@@ -8823,7 +8901,7 @@ var $author$project$Main$currentCardList = function (m) {
 								_List_Nil,
 								_List_fromArray(
 									[
-										$author$project$Card$Ironclad$view(card),
+										$author$project$Card$view(card),
 										A2(
 										$rtfeldman$elm_css$Html$Styled$div,
 										_List_fromArray(
@@ -8852,7 +8930,10 @@ var $author$project$Main$currentCardList = function (m) {
 													[
 														$rtfeldman$elm_css$Html$Styled$text('除去')
 													])),
-												A2($elm$core$String$endsWith, '+', card.bG) ? $author$project$Utils$noHtml : A2(
+												A2(
+												$elm$core$String$endsWith,
+												'+',
+												$author$project$Card$name(card)) ? $author$project$Utils$noHtml : A2(
 												$rtfeldman$elm_css$Html$Styled$button,
 												_List_fromArray(
 													[
