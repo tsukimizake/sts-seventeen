@@ -323,7 +323,8 @@ secondWind =
 
                 drawPerTurn =
                     if loopTurn > 0 then
-                        toFloat cardCount / loopTurn
+                        -- デッキ1周あたりの引き枚数から算出。極端な値を避けるため最大10に制限。
+                        min 10 (toFloat cardCount / loopTurn)
 
                     else
                         0
