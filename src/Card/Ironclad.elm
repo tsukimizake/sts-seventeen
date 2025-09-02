@@ -323,17 +323,17 @@ secondWind =
 
                 drawPerTurn =
                     if loopTurn > 0 then
-                        -- デッキ1周あたりの引き枚数から算出。極端な値を避けるため最大10に制限。
-                        min 10 (toFloat cardCount / loopTurn)
+                        toFloat cardCount / loopTurn
 
                     else
-                        0
+                        10
 
                 block =
                     if cardCount > 0 && loopTurn > 0 then
                         round ((toFloat skillsInDeck / toFloat cardCount) * drawPerTurn * toFloat rate)
 
                     else
+                        -- should not happen
                         0
             in
             { default
