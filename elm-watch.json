@@ -1,4 +1,6 @@
 {
+    "serve": "./build",
+    "port": 8101,
     "targets": {
         "sts": {
             "inputs": [

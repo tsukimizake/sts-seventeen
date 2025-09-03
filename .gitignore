@@ -1,4 +1,5 @@
 elm-stuff
 .redo*
 node_modules/
+build/
 
