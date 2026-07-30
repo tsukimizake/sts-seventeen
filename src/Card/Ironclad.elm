@@ -258,7 +258,7 @@ wildStrike : CardDef
 wildStrike =
     let
         n =
-            { default | name = "乱打", attack = 12, mana = 1, draw = -1 }
+            { default | name = "ワイルドストライク", attack = 12, mana = 1, draw = -1 }
     in
     mkCardDef n (s_attack 17)
 
