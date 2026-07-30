@@ -252,7 +252,7 @@ calcResult { cards, manaPerTurn, strength } =
             perLoop damage
 
         vulTurn =
-            evaluated |> List.map .vulnerable |> List.sum |> toFloat |> max loopTurn
+            evaluated |> List.map .vulnerable |> List.sum |> toFloat |> min loopTurn
 
         dmgPerLoopVul =
             dmgPerLoop + (vulTurn / loopTurn) * dmgPerLoop * 0.5
