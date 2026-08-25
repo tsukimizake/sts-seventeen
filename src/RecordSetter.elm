@@ -107,3 +107,4 @@ s_vulnerable value__ record__ =
 s_weak : a -> { b | weak : a } -> { b | weak : a }
 s_weak value__ record__ =
     { record__ | weak = value__ }
+

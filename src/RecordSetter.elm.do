@@ -1,11 +1,5 @@
-#!/bin/env bash
-set -euo pipefail
-exec >&2
+#!/usr/bin/env nu
 
-shopt -s extglob
-redo-ifchange !(RecordSetter).elm
-redo-ifchange **/*.elm
-redo-ifchange ../elm.json
-
-setem --output /tmp ..
-mv /tmp/RecordSetter.elm $3
+let deps = glob **/*.elm --exclude [RecordSetter.elm] | path relative-to $env.PWD
+redo-ifchange ...$deps ../elm.json
+npx setem --stdout ..
