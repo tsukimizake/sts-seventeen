@@ -3,9 +3,6 @@
     "elm": "^0.19.1-5"
   },
   "devDependencies": {
-    "elm-watch": "^2.0.0-beta.7"
-  },
-  "overrides": {
-    "picomatch": "4.0.7"
+    "elm-watch": "^2.0.0-beta.14"
   }
 }
