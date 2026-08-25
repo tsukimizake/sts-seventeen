@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "elm-watch": "^2.0.0-beta.7"
+  },
+  "overrides": {
+    "picomatch": "2.3.1"
   }
 }
